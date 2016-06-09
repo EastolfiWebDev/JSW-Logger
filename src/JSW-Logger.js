@@ -13,7 +13,7 @@ var path = require("path"),
     winston = require("winston"),
     winstonLogger = winston.Logger;
     
-const TRANSPORT_PREFIX = 'EAMP_LOGGER_';
+const TRANSPORT_PREFIX = 'EAMP_LOGGER';
 
 // Singleton instance
 let singleton = Symbol();
@@ -50,7 +50,7 @@ class Logger extends winstonLogger {
         super({
             transports: [
                 new winston.transports.Console({
-                    name: TRANSPORT_PREFIX + 'debug-console',
+                    name: `${TRANSPORT_PREFIX}_debug-console`,
                     level: 'error'
                 })
             ]
@@ -59,13 +59,15 @@ class Logger extends winstonLogger {
         this.options = _.assign(this.options, defaultOptions, options);
         
         // Ensuring that the log file exists
-        fs.ensureFileSync(path.resolve(__dirname + defaultOptions.handledExceptionsLogPath));
+        let handledExceptionsLogPath = path.resolve(__dirname + defaultOptions.handledExceptionsLogPath);
+        
+        fs.ensureFileSync(handledExceptionsLogPath);
         
         this.logger = new winston.Logger({
             transports: [
                 new winston.transports.File({
-                    name: TRANSPORT_PREFIX + 'exception-file',
-                    filename: 'logs/handledException.log',
+                    name: `${TRANSPORT_PREFIX}_exception-file`,
+                    filename: handledExceptionsLogPath,
                     level: 'error',
                     json: false,
                     colorize: true
