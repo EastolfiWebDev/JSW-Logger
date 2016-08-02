@@ -9,6 +9,8 @@ jscoverage = ./node_modules/.bin/jscoverage
 # Building #
 build_app = $(grunt) build_app
 
+compress_bundle = $(grunt) bundle
+
 build_web_full = $(grunt) build_doc
 
 build_api_full = $(grunt) build_html
@@ -30,6 +32,9 @@ clean_test = 	rm -rf test/coverage && rm -rf test/results && rm -rf lib-cov
 
 build:
 	$(build_app)
+	
+bundle: build
+	$(compress_bundle)
 	
 # Building Documentation #
 
@@ -65,5 +70,16 @@ coverage: do_coverage
 # NPM Publishing #
 
 build_all: build build_full_doc test coverage
+
+# Bower Publishing #
+
+bower_major: bundle test
+	bower version major -m "VERSION: New major version released (v%s)"
+
+bower_minor: bundle test
+	bower version minor -m "VERSION: New minor version released (v%s)"
+
+bower_patch: bundle test
+	bower version patch -m "VERSION: New patch released (v%s)"
 
 .PHONY: build_all

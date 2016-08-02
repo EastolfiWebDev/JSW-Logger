@@ -1,3 +1,13 @@
+var banner = '' +
+'/**\n' +
+' * JSW-Logger.js - Logger for JavaScript based on Winston Logger.\n' +
+' * version <%= pkg.version %>\n' +
+' * \n' +
+' * made by Eduardo Astolfi <eastolfi91@gmail.com>\n' +
+' * copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>\n' +
+' * MIT Licensed\n' +
+' */\n';
+
 module.exports = function(grunt) {
 
     // Project configuration.
@@ -63,6 +73,34 @@ module.exports = function(grunt) {
                 src: ['test/coverage/coverage-dist.lcov'],
                 options: { }
             }
+        },
+        
+        browserify: {
+            browser: {
+                files: {
+                    './dist/jsw-logger.js': './browser/index.js'
+                },
+                options: {
+                    transform: [['babelify', {presets: ['es2015', 'react']}]],
+                    alias: {
+                        'jsw-logger': './browser/JSW-Logger.js',
+                    }
+                }
+            },
+            options: {
+                banner: banner
+            }
+        },
+        
+        uglify: {
+            dist: {
+                files: {
+                    'dist/jsw-logger.min.js': ['dist/jsw-logger.js']
+                }
+            },
+            options: {
+                banner: banner
+            }
         }
     });
 
@@ -72,15 +110,20 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-jsdoc-to-markdown');
     grunt.loadNpmTasks('grunt-coveralls');
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    
+    // Building
+    grunt.registerTask('watch_dist', ['watch:dist']);
+    grunt.registerTask('build_app', ['babel:dist']);
+    grunt.registerTask('bundle', ['browserify:browser', 'uglify:dist']);
     
     // Documentation
     grunt.registerTask('build_doc', ['jsdoc:dist']);
     grunt.registerTask('build_html', ['jsdoc2md:fullDoc', 'jsdoc2md:apiDoc']);
     grunt.registerTask('build_full_doc', ['build_doc', 'build_html']);
     
-    grunt.registerTask('watch_dist', ['watch:dist']);
-    grunt.registerTask('build_app', ['babel:dist']);
-    
+    // Testing
     grunt.registerTask('dev_test', ['simplemocha:dev']);
     grunt.registerTask('run_test', ['simplemocha:all']);
     grunt.registerTask('coveralls_dist', ['coveralls:dist']);
