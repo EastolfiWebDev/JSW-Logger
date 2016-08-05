@@ -1,63 +1,17 @@
-var expect = require("chai").expect,
-    Logger = require("../index.js");
-    
-// var logger = new winston.Logger({
-//     transports: [
-//         new winston.transports.Console({
-//             name: 'debug-console',
-//             level: 'debug'
-//         // }),
-//         // new (winston.transports.File)({
-//         //     name: 'info-file',
-//         //     level: 'info',
-//         //     filename: 'logs/info.log'
-//         // }),
-//         // new (winston.transports.File)({
-//         //     name: 'error-file',
-//         //     level: 'error',
-//         //     filename: 'logs/error.log'
-//         })
-//     ],
-//     exceptionHandlers: [
-//         new winston.transports.File({
-//             name: 'exception-file',
-//             filename: 'logs/exception.log',
-//             humanReadableUnhandledException: true,
-//             level: 'debug',
-//             handleExceptions: true,
-//             json: false,
-//             colorize: true
-//         })
-//     ],
-//     exitOnError: true
-// });
-  
-//   var logger = new (winston.Logger)({
-//     transports: [
-//         new winston.transports.Console(
-//             {
-//                 level: 'debug',
-//                 colorize: true,
-//                 timestamp: true
-//             }),
-//         new winston.transports.File(
-//             {
-//                 level: 'info',
-//                 colorize: false,
-//                 timestamp: true,
-//                 json: true,
-//                 filename: '/logs/exception.log',
-//                 handleExceptions: true
-//             })
-//     ]
-// });
+/* global chai, _ */
 
-//   winston.handleExceptions(new winston.transports.File({ filename: 'logs/exception.log' }));
+var expect = chai.expect;
 
-  
-describe("Logger", function() {
+var Logger = null;
+
+describe("Logger - Web", function() {
     describe("#Constructor", function() {
         it("should have the dependencies ready", function() {
+            expect(require).to.exist;
+            expect(_).to.exist;
+            
+            Logger = require("jsw-logger");
+            
             expect(Logger).to.exist;
         });
     });
