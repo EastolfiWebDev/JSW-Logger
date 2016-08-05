@@ -1,6 +1,6 @@
 {
   "name": "jsw-logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Javascript logging module that inherits Winston Logger (https://github.com/winstonjs/winston) module.",
   "author": "Eduardo Astolfi <eastolfi91@gmail.com>",
   "keywords": [
@@ -49,7 +49,7 @@
   "scripts": {
     "test": "grunt test",
     "preversion": "npm test",
-    "version": "make build_all && git add -A lib && git add -A doc && git add -A api",
+    "version": "make build_all && git add . --all",
     "postversion": "git push -u origin && git push --follow-tags -u origin && npm publish"
   },
   "repository": {
