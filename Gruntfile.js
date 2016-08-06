@@ -89,7 +89,7 @@ module.exports = function(grunt) {
                 options: {
                     transform: [['babelify', {presets: ['es2015', 'react']}]],
                     alias: {
-                        'jsw-logger': './index_browser.js',
+                        'jsw-logger': './index_browser.js'
                     }
                 }
             },
