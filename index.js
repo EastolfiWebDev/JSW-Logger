@@ -5,6 +5,6 @@ var path = require("path"),
     winstonLogger = winston.Logger;
 
 
-var Logger = require('./lib/JSW-Logger');
+var Logger = require('./lib/JSW-Logger')(winstonLogger, winston, path, fs, _, false);
 
-module.exports = Logger(winstonLogger, winston, path, fs, _, false);
+module.exports = Logger;
