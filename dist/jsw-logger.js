@@ -1,6 +1,6 @@
 /**
  * JSW-Logger.js - Logger for JavaScript based on Winston Logger.
- * version 1.0.3
+ * version 1.0.4
  * 
  * made by Eduardo Astolfi <eastolfi91@gmail.com>
  * copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
