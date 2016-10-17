@@ -137,7 +137,7 @@ module.exports = function(baseLogger, winston, path, fs, _, browser) {
             if (_.isNil(this[singleton])) {
                 this[singleton] = new Logger(singletonEnforcer, options);
             } else {
-                console.error("Singleton already instanciated. Ignoring options and retrieving current instance.");
+                Logger.instance.error("Singleton already instanciated. Ignoring options and retrieving current instance.");
             }
             
             return Logger.instance;
