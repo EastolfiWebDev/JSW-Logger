@@ -52,7 +52,7 @@ module.exports = function(grunt) {
             dist : {
                 src: ['src/JSW-Logger.js'],
                 options: {
-                    destination: 'doc',
+                    destination: 'docs',
                     config: 'jsdoc.conf.json'
                 }
             }
