@@ -91,7 +91,7 @@ describe("Logger", function() {
         });
         
         it("should be able to create a first instance with options", function() {
-            var logger = Logger.getInstance({ testing: true });
+            var logger = Logger.getInstance({ testing: true, hideAllLogs: true });
             
             expect(logger).to.exist;
             
