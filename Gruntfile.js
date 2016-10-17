@@ -123,7 +123,7 @@ module.exports = function(grunt) {
     // Building
     grunt.registerTask('watch_dist', ['watch:dist']);
     grunt.registerTask('build_app', ['babel:dist']);
-    grunt.registerTask('bundle', ['browserify:browser', 'uglify:dist']);
+    // grunt.registerTask('bundle', ['browserify:browser', 'uglify:dist']);
     
     // Documentation
     grunt.registerTask('build_doc', ['jsdoc:dist']);
@@ -133,7 +133,7 @@ module.exports = function(grunt) {
     // Testing
     grunt.registerTask('dev_test', ['simplemocha:dev']);
     grunt.registerTask('coveralls_dist', ['coveralls:dist']);
-    grunt.registerTask('test', ['simplemocha:all', 'mocha:browser']);
+    grunt.registerTask('test', ['simplemocha:all'/*, 'mocha:browser'*/]);
     
     grunt.registerTask('full_build', ['build_app', 'build_doc', 'test']);
     

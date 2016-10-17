@@ -36,7 +36,7 @@ amend_commit:
 
 # Running Tests #
 
-test: bundle
+test: build
 	$(run_test)
 	
 do_coverage: test
