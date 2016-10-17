@@ -1,6 +1,6 @@
 /**
  * JSW-Logger.js - Logger for JavaScript based on Winston Logger.
- * version 1.0.4
+ * version 1.0.5
  * 
  * made by Eduardo Astolfi <eastolfi91@gmail.com>
  * copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
@@ -61,6 +61,7 @@ var singleton = (0, _symbol2.default)();
 var singletonEnforcer = (0, _symbol2.default)();
 
 var defaultOptions = {
+    hideAllLogs: false,
     throwError: true,
     handledExceptionsLogPath: '/../logs/handledException.log'
 };
@@ -126,6 +127,10 @@ module.exports = function (baseLogger, winston, path, fs, _, browser) {
                 });
             } else {
                 _this.logger = _this;
+            }
+
+            if (options.hideAllLogs) {
+                _this.remove(TRANSPORT_PREFIX + '_debug-console');
             }
             return (0, _possibleConstructorReturn3.default)(_this);
         }
