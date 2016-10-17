@@ -20,6 +20,7 @@ let singleton = Symbol();
 let singletonEnforcer = Symbol();
 
 let defaultOptions = {
+    hideAllLogs: false,
     throwError: true,
     handledExceptionsLogPath: '/../logs/handledException.log'
 };
@@ -83,6 +84,10 @@ module.exports = function(baseLogger, winston, path, fs, _, browser) {
                 });
             } else {
                 this.logger = this;
+            }
+            
+            if (options.hideAllLogs) {
+                this.remove(`${TRANSPORT_PREFIX}_debug-console`);
             }
         }
         
