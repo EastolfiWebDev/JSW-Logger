@@ -25,7 +25,7 @@ let defaultOptions = {
     handledExceptionsLogPath: '/../logs/handledException.log'
 };
 
-module.exports = function(baseLogger, winston, path, fs, _, browser) {
+module.exports = function(baseLogger, winston, path, fs, _) {
 
     /**
      * Logger
@@ -50,41 +50,33 @@ module.exports = function(baseLogger, winston, path, fs, _, browser) {
         constructor(enforcer, options = {}) {
             if(enforcer != singletonEnforcer) throw new Error("Cannot construct singleton");
             
-            if (!browser) {
-                super({
-                    transports: [
-                        new winston.transports.Console({
-                            name: `${TRANSPORT_PREFIX}_debug-console`,
-                            level: 'error'
-                        })
-                    ]
-                });
-            } else {
-                super();
-            }
+            super({
+                transports: [
+                    new winston.transports.Console({
+                        name: `${TRANSPORT_PREFIX}_debug-console`,
+                        level: 'error'
+                    })
+                ]
+            });
             
             this.options = _.assign(this.options, defaultOptions, options);
             
-            if (!browser) {
-                // Ensuring that the log file exists
-                let handledExceptionsLogPath = path.resolve(__dirname + defaultOptions.handledExceptionsLogPath);
-                
-                fs.ensureFileSync(handledExceptionsLogPath);
-                
-                this.logger = new winston.Logger({
-                    transports: [
-                        new winston.transports.File({
-                            name: `${TRANSPORT_PREFIX}_exception-file`,
-                            filename: handledExceptionsLogPath,
-                            level: 'error',
-                            json: false,
-                            colorize: true
-                        })
-                    ]
-                });
-            } else {
-                this.logger = this;
-            }
+            // Ensuring that the log file exists
+            let handledExceptionsLogPath = path.resolve(__dirname + defaultOptions.handledExceptionsLogPath);
+            
+            fs.ensureFileSync(handledExceptionsLogPath);
+            
+            this.logger = new winston.Logger({
+                transports: [
+                    new winston.transports.File({
+                        name: `${TRANSPORT_PREFIX}_exception-file`,
+                        filename: handledExceptionsLogPath,
+                        level: 'error',
+                        json: false,
+                        colorize: true
+                    })
+                ]
+            });
             
             if (options.hideAllLogs) {
                 this.remove(`${TRANSPORT_PREFIX}_debug-console`);
