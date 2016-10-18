@@ -59,6 +59,7 @@ gulp.task('generate', function(cb) {
 gulp.task('release', function(cb) {
     runSequence(
         'generate',
+        'changelog',
         'version',
         'commit-changes',
         'push-changes',
