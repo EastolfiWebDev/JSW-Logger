@@ -5,11 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('clean:lib', function () {
     return del([
-        'lib/**/*.js',
-        // // here we use a globbing pattern to match everything inside the `mobile` folder
-        // 'dist/mobile/**/*',
-        // // we don't want to clean this file though so we negate the pattern
-        // '!dist/mobile/deploy.json'
+        'lib/**/*.js'
     ]);
 });
 
