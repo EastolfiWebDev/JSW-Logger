@@ -39,7 +39,8 @@ gulp.task('changelog', function () {
     })
     .pipe(conventionalChangelog({
         preset: 'angular',
-        outputUnreleased: true
+        outputUnreleased: true,
+        releaseCount: 0
     }, {
         host: 'https://github.com',
         owner: 'EastolfiWebDev',
