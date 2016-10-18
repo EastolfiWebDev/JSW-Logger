@@ -44,6 +44,7 @@ module.exports = function(baseLogger, winston, path, fs, _) {
      * @param {Symbol} enforcer - Enforcer internal object to avoid instanciating as "new Logger()"
      * @param {Object} [options] - Additional options
      * 
+     * @param {String|Array} [options.hideAllLogs=false] - When set to true hides all logs (usefull when running tests)
      * @param {String|Array} [options.throwError=true] - Whether if throw an exception when logged trought the Logger#throw method
      */
     class Logger extends baseLogger {
@@ -80,6 +81,7 @@ module.exports = function(baseLogger, winston, path, fs, _) {
             
             if (options.hideAllLogs) {
                 this.remove(`${TRANSPORT_PREFIX}_debug-console`);
+                this.remove(`${TRANSPORT_PREFIX}_exception-file`);
             }
         }
         
