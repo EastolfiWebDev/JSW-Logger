@@ -81,7 +81,7 @@ module.exports = function(baseLogger, winston, path, fs, _) {
             
             if (options.hideAllLogs) {
                 this.remove(`${TRANSPORT_PREFIX}_debug-console`);
-                this.remove(`${TRANSPORT_PREFIX}_exception-file`);
+                this.logger.remove(`${TRANSPORT_PREFIX}_exception-file`);
             }
         }
         
