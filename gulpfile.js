@@ -63,7 +63,7 @@ gulp.task('release', function(cb) {
         'commit-changes',
         'push-changes',
         'create-new-tag',
-        'github-release',
+        'release:github',
     function(error) {
         if (error) {
             console.log(error);
