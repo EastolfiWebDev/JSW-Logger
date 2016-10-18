@@ -38,7 +38,12 @@ gulp.task('changelog', function () {
         buffer: false
     })
     .pipe(conventionalChangelog({
-        preset: 'angular' // Or to any other commit message convention you use.
+        preset: 'angular',
+        outputUnreleased: true
+    }, {
+        host: 'https://github.com',
+        owner: 'EastolfiWebDev',
+        repository: 'JSW-Logger'
     }))
     .pipe(gulp.dest('./'));
 });
