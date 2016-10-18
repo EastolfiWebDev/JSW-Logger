@@ -30,6 +30,7 @@ Logger
 | --- | --- | --- | --- |
 | enforcer | <code>Symbol</code> |  | Enforcer internal object to avoid instanciating as "new Logger()" |
 | [options] | <code>Object</code> |  | Additional options |
+| [options.hideAllLogs] | <code>String</code> &#124; <code>Array</code> | <code>false</code> | When set to true hides all logs (usefull when running tests) |
 | [options.throwError] | <code>String</code> &#124; <code>Array</code> | <code>true</code> | Whether if throw an exception when logged trought the Logger#throw method |
 
 <a name="Logger+throw"></a>
