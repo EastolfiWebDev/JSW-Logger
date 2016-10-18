@@ -65,6 +65,7 @@ gulp.task('release', function(cb) {
         'push-changes',
         'create-new-tag',
         'release:github',
+        'publish:coveralls',
     function(error) {
         if (error) {
             console.log(error);
