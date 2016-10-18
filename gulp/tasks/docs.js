@@ -10,7 +10,7 @@ var conventionalChangelog = require('gulp-conventional-changelog');
 gulp.task('doc:api:full', function () {
     return jsdoc2md.render({ files: 'src/**/*.js' })
     .then(function(output) {
-        return fs.writeFileSync('api/documentation.md', output);
+        return fs.writeFileSync('api/index.md', output);
     });
 });
 
