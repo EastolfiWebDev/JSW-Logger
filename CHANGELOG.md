@@ -1,5 +1,10 @@
 <a name="Unreleased"></a>
-# Unreleased (2016-10-18)
+# [Unreleased](https://github.com/EastolfiWebDev/JSW-Logger/compare/v1.0.6...e4f9c9f) (2016-10-23)
+
+
+### Features
+
+* Add browser support ([e4f9c9f](https://github.com/EastolfiWebDev/JSW-Logger/commit/e4f9c9f))
 
 
 

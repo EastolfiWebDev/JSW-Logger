@@ -1,6 +1,6 @@
 {
   "name": "jsw-logger",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Javascript logging module that inherits Winston Logger (https://github.com/winstonjs/winston) module.",
   "main": "index.js",
   "authors": [
