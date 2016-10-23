@@ -1,65 +1,24 @@
-var expect = require('chai').expect,
-    Logger = require('../lib/JSW-Logger.js');
-    // Logger = require('../index.js');
-    
-// var logger = new winston.Logger({
-//     transports: [
-//         new winston.transports.Console({
-//             name: 'debug-console',
-//             level: 'debug'
-//         // }),
-//         // new (winston.transports.File)({
-//         //     name: 'info-file',
-//         //     level: 'info',
-//         //     filename: 'logs/info.log'
-//         // }),
-//         // new (winston.transports.File)({
-//         //     name: 'error-file',
-//         //     level: 'error',
-//         //     filename: 'logs/error.log'
-//         })
-//     ],
-//     exceptionHandlers: [
-//         new winston.transports.File({
-//             name: 'exception-file',
-//             filename: 'logs/exception.log',
-//             humanReadableUnhandledException: true,
-//             level: 'debug',
-//             handleExceptions: true,
-//             json: false,
-//             colorize: true
-//         })
-//     ],
-//     exitOnError: true
-// });
-  
-//   var logger = new (winston.Logger)({
-//     transports: [
-//         new winston.transports.Console(
-//             {
-//                 level: 'debug',
-//                 colorize: true,
-//                 timestamp: true
-//             }),
-//         new winston.transports.File(
-//             {
-//                 level: 'info',
-//                 colorize: false,
-//                 timestamp: true,
-//                 json: true,
-//                 filename: '/logs/exception.log',
-//                 handleExceptions: true
-//             })
-//     ]
-// });
+var expect = null,
+    JSWLogger = null;
 
-//   winston.handleExceptions(new winston.transports.File({ filename: 'logs/exception.log' }));
+var browser = false;
 
-  
-describe('Logger', function() {
+try {
+    if (window) browser = true;
+} catch (e) {}
+
+if (browser) {
+    expect = window.chai.expect;
+    JSWLogger = window.Logger;
+} else {
+    expect = require('chai').expect;
+    JSWLogger = require('../../lib/JSW-Logger.js');
+}
+
+describe('Logger - Web', function() {
     describe('#Constructor', function() {
         it('should have the dependencies ready', function() {
-            expect(Logger).to.exist;
+            expect(JSWLogger).to.exist;
         });
     });
         
@@ -68,7 +27,7 @@ describe('Logger', function() {
             var thrown = false;
             
             try {
-                new Logger();
+                new JSWLogger();
             } catch (error) {
                 expect(error).to.exist;
                 expect(error).to.be.instanceof(Error);
@@ -80,7 +39,7 @@ describe('Logger', function() {
             
             thrown = false;
             try {
-                Logger();
+                JSWLogger();
             } catch (error) {
                 expect(error).to.exist;
                 expect(error).to.be.instanceof(Error);
@@ -92,7 +51,7 @@ describe('Logger', function() {
         });
         
         it('should be able to create a first instance with options', function() {
-            var logger = Logger.getInstance({ testing: true, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ testing: true, hideAllLogs: true });
             
             expect(logger).to.exist;
             
@@ -102,7 +61,7 @@ describe('Logger', function() {
         });
         
         it('should be able to retrieve the instance', function() {
-            var logger = Logger.instance;
+            var logger = JSWLogger.instance;
             
             expect(logger).to.exist;
             
@@ -112,7 +71,7 @@ describe('Logger', function() {
         });
         
         it('should fail when re-instanciating with options', function() {
-            var logger = Logger.getInstance({ testing: false });
+            var logger = JSWLogger.getInstance({ testing: false });
             
             expect(logger).to.exist;
             
@@ -122,9 +81,9 @@ describe('Logger', function() {
         });
         
         it('should be able to drop the instance', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ testing: false });
+            var logger = JSWLogger.getInstance({ testing: false });
             
             expect(logger).to.exist;
             
@@ -134,9 +93,9 @@ describe('Logger', function() {
         });
         
         it('should be able to create a first instance without options', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.instance;
+            var logger = JSWLogger.instance;
             
             expect(logger).to.exist;
             
@@ -146,11 +105,22 @@ describe('Logger', function() {
     });
     
     describe('#Logging', function() {
-        it('should output up to "info" by default', function() {
-            Logger.__dropInstance();
+        it('should work even with no arguments', function() {
+            JSWLogger.__dropInstance();
             
             // Log up to info only
-            var logger = Logger.getInstance({ hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideLevelLog: true });
+            
+            var result = logger.silly();
+            
+            expect(result).to.be.equal('');
+        });
+        
+        it('should output up to "info" by default', function() {
+            JSWLogger.__dropInstance();
+            
+            // Log up to info only
+            var logger = JSWLogger.getInstance({ hideAllLogs: true });
             
             var result = logger.silly('test info 1');
             
@@ -162,9 +132,9 @@ describe('Logger', function() {
         });
         
         it('should not output if level is too low', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 2, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 2, hideAllLogs: true });
             
             var result = logger.silly('test silly 1');
             
@@ -172,9 +142,9 @@ describe('Logger', function() {
         });
         
         it('should output a "silly" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.silly('test silly 1');
             
@@ -194,9 +164,9 @@ describe('Logger', function() {
         });
         
         it('should output a "debug" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.debug('test debug 1');
             
@@ -208,9 +178,9 @@ describe('Logger', function() {
         });
         
         it('should output a "verbose" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.verbose('test verbose 1');
             
@@ -222,9 +192,9 @@ describe('Logger', function() {
         });
         
         it('should output a "info" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.info('test info 1');
             
@@ -244,9 +214,9 @@ describe('Logger', function() {
         });
         
         it('should output a "warn" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.warn('test warn 1');
             
@@ -262,9 +232,9 @@ describe('Logger', function() {
         });
         
         it('should output a "error" log', function() {
-            Logger.__dropInstance();
+            JSWLogger.__dropInstance();
             
-            var logger = Logger.getInstance({ level: 9, hideAllLogs: true });
+            var logger = JSWLogger.getInstance({ level: 9, hideAllLogs: true });
             
             var result = logger.error('error debug 1');
             
@@ -276,7 +246,7 @@ describe('Logger', function() {
         });
         
         it('should throw an error and exit', function() {
-            var logger = Logger.instance;
+            var logger = JSWLogger.instance;
             
             var thrown = false;
             
@@ -294,7 +264,7 @@ describe('Logger', function() {
         });
         
         it('should throw an error without exiting', function() {
-            var logger = Logger.instance;
+            var logger = JSWLogger.instance;
             logger.options.throwError = false;
             
             var thrown = false;
