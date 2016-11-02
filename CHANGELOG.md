@@ -1,5 +1,10 @@
 <a name="Unreleased"></a>
-# [Unreleased](https://github.com/EastolfiWebDev/JSW-Logger/compare/v1.0.6...e4f9c9f) (2016-10-23)
+# Unreleased (2016-11-02)
+
+
+
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/EastolfiWebDev/JSW-Logger/compare/v1.0.6...1.1.0) (2016-10-23)
 
 
 ### Features
