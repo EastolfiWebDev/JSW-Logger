@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @file JSW-Logger.js - Logging class extending Winston (@link https://github.com/winstonjs/winston) module
@@ -9,33 +9,53 @@
  * @license MIT Licensed
  */
 
-var _ = require("lodash");
+import * as _ from "lodash";
     
-const TRANSPORT_PREFIX = 'EAMP_LOGGER';
+const TRANSPORT_PREFIX = "EAMP_LOGGER";
 
 // Singleton instance
-let singleton = Symbol();
-let singletonEnforcer = Symbol();
+const singleton = Symbol();
+const singletonEnforcer = Symbol();
 
-let defaultOptions = {
-    level: 2,   // logging info, warn and error by default
-    hideAllLogs: false,
-    hideLevelLog: false,
-    throwError: true,
-    handledExceptionsLogPath: '/../logs/handledException.log'
-};
+class Options {
+    public level: Number;                          // logging info, warn and error by default
+    public hideAllLogs: boolean;
+    public hideLevelLog: boolean;
+    public throwError: boolean;
+    public handledExceptionsLogPath: String;
+    
+    private __defaultOptions = {
+        level: 2,
+        hideAllLogs: false,
+        hideLevelLog: false,
+        throwError: true,
+        handledExceptionsLogPath: "/../logs/handledException.log"
+    };
+    
+    constructor(options?) {
+        if (_.isNil(options)) {
+            options = {}
+        }
+        
+        this.level = (options.level ? options.level : this.__defaultOptions.level);
+        this.hideAllLogs = (_.isBoolean(options.hideAllLogs) ? options.hideAllLogs : this.__defaultOptions.hideAllLogs);
+        this.hideLevelLog = (_.isBoolean(options.hideLevelLog) ? options.hideLevelLog : this.__defaultOptions.hideLevelLog);
+        this.throwError = (_.isBoolean(options.throwError) ? options.throwError : this.__defaultOptions.throwError);
+        this.handledExceptionsLogPath = (options.handledExceptionsLogPath ? options.handledExceptionsLogPath : this.__defaultOptions.handledExceptionsLogPath);
+    }
+}
 
 const LEVELS = {
-    'silly':    6,
-    'debug':    5,
-    'verbose':  4,
-    'log':      3,
-    'info':     2,
-    'warn':     1,
-    'error':    0
+    "silly":    6,
+    "debug":    5,
+    "verbose":  4,
+    "log":      3,
+    "info":     2,
+    "warn":     1,
+    "error":    0
 };
 
-const LEVELS_STR = ['ERROR', 'WARN', 'INFO', 'LOG', 'VERBOSE', 'DEBUG', 'SILLY'];
+const LEVELS_STR = ["ERROR", "WARN", "INFO", "LOG", "VERBOSE", "DEBUG", "SILLY"];
 
 function interpolate(string, values) {
     var str = string;
@@ -44,9 +64,9 @@ function interpolate(string, values) {
     while (str.match(/%./)) {
         var match = str.match(/%./)[0];
     
-        if (match.toLowerCase() === '%s') {
-            str = str.replace(match, '' + values[i]);
-        } else if (match.toLowerCase() === '%d') {
+        if (match.toLowerCase() === "%s") {
+            str = str.replace(match, "" + values[i]);
+        } else if (match.toLowerCase() === "%d") {
             str = str.replace(match, +values[i]);
         }
     
@@ -59,7 +79,7 @@ function interpolate(string, values) {
 // function ensureFile(file, cb) {
 //     fs.exists(file, exists => {
 //         if (!exists) {
-//             fs.writeFile(file, '', err => {
+//             fs.writeFile(file, "", err => {
 //                 cb(err);
 //             });
 //         } else {
@@ -89,6 +109,8 @@ function interpolate(string, values) {
  * @param {Boolean} [options.throwError=true] - Whether if throw an exception when logged trought the Logger#throw method
  */
 class Logger {
+    private options: Options = new Options();
+    
     constructor(enforcer, options = {}) {
         if(enforcer != singletonEnforcer) throw new Error("Cannot construct singleton");
         
@@ -96,12 +118,13 @@ class Logger {
         //     transports: [
         //         new winston.transports.Console({
         //             name: `${TRANSPORT_PREFIX}_debug-console`,
-        //             level: 'error'
+        //             level: "error"
         //         })
         //     ]
         // });
         
-        this.options = _.assign(this.options, defaultOptions, options);
+        //this.options = _.assign({}, this.options, options);
+        this.options = new Options(options);
         
         // Ensuring that the log file exists
         // let handledExceptionsLogPath = path.resolve(__dirname + defaultOptions.handledExceptionsLogPath);
@@ -114,7 +137,7 @@ class Logger {
         //             new winston.transports.File({
         //                 name: `${TRANSPORT_PREFIX}_exception-file`,
         //                 filename: handledExceptionsLogPath,
-        //                 level: 'error',
+        //                 level: "error",
         //                 json: false,
         //                 colorize: true
         //             })
@@ -131,7 +154,7 @@ class Logger {
     log(level, message, ...options) {
         if (_.isNil(level)) {
             level = LEVELS.log;
-            message = '';
+            message = "";
             options = [];
         }
         
@@ -186,31 +209,31 @@ class Logger {
     }
     
     silly(message, ...options) {
-        return this.log(LEVELS.silly, message || '', options);
+        return this.log(LEVELS.silly, message || "", options);
     }
     debug(message, ...options) {
-        return this.log(LEVELS.debug, message || '', options);
+        return this.log(LEVELS.debug, message || "", options);
     }
     verbose(message, ...options) {
-        return this.log(LEVELS.verbose, message || '', options);
+        return this.log(LEVELS.verbose, message || "", options);
     }
     info(message, ...options) {
-        return this.log(LEVELS.info, message || '', options);
+        return this.log(LEVELS.info, message || "", options);
     }
     inform(message, ...options) {
-        return this.log(LEVELS.info, message || '', options);
+        return this.log(LEVELS.info, message || "", options);
     }
     information(message, ...options) {
-        return this.log(LEVELS.info, message || '', options);
+        return this.log(LEVELS.info, message || "", options);
     }
     warn(message, ...options) {
-        return this.log(LEVELS.warn, message || '', options);
+        return this.log(LEVELS.warn, message || "", options);
     }
     warning(message, ...options) {
-        return this.log(LEVELS.warn, message || '', options);
+        return this.log(LEVELS.warn, message || "", options);
     }
     error(message, ...options) {
-        return this.log(LEVELS.error, message || '', options);
+        return this.log(LEVELS.error, message || "", options);
     }
     
     /**
@@ -275,4 +298,5 @@ class Logger {
     }
 }
 
-module.exports = Logger;
+// module.exports = Logger;
+export = Logger;
