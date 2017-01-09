@@ -70,9 +70,9 @@ gulp.task("generate", function(cb) {
 gulp.task("release", function(cb) {
     runSequence(
         "generate",             // build + bundle + tests + docs
-        "changelog",            // generate changelog
         "version",              // bump version
         "commit-changes",       // add all and commit under "relase MAJOR|MINOR|PATCH version (vVERSION)" message
+        "commit-changelog",     // generate changelog
         "push-changes",         // push all commits to github
         "create-new-tag",       // generate tag and push it
         "release:github",       // generate github release

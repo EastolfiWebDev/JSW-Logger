@@ -1,8 +1,29 @@
+## Classes
+
+<dl>
+<dt><a href="#Logger">Logger</a></dt>
+<dd><p>Logging module singleton which inherits the Winston Logger module.
+         By default:
+             <ol>
+                 <li>Writes all the HANDLED exceptions under a log file in &quot;logs/handledException.log&quot;</li>
+                 <li>Writes in the console all warnings and erros</li>
+             </ol></p>
+</dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#get">get()</a> ⇒ <code><a href="#Logger">Logger</a></code></dt>
+<dd><p>Retrieves the current singleton instance, creating a new one if needed.</p>
+</dd>
+</dl>
+
 <a name="Logger"></a>
 
 ## Logger
 Logging module singleton which inherits the Winston Logger module.
-         By default: 
+         By default:
              <ol>
                  <li>Writes all the HANDLED exceptions under a log file in "logs/handledException.log"</li>
                  <li>Writes in the console all warnings and erros</li>
@@ -13,12 +34,7 @@ Logging module singleton which inherits the Winston Logger module.
 
 * [Logger](#Logger)
     * [new Logger(enforcer, [options])](#new_Logger_new)
-    * _instance_
-        * [.throw(error, [throwError])](#Logger+throw)
-    * _static_
-        * [.instance](#Logger.instance) ⇒ <code>[Logger](#Logger)</code>
-        * [.getInstance([options])](#Logger.getInstance) ⇒ <code>[Logger](#Logger)</code>
-        * [.__dropInstance()](#Logger.__dropInstance)
+    * [.throw(error, [throwError])](#Logger+throw)
 
 <a name="new_Logger_new"></a>
 
@@ -45,29 +61,10 @@ Method to throw a controlled exception, logging it to a log file.
 | error | <code>Error</code> &#124; <code>String</code> |  | The exception or message to be thrown. |
 | [throwError] | <code>Boolean</code> | <code>true</code> | Same as Logger->options->throwError |
 
-<a name="Logger.instance"></a>
+<a name="get"></a>
 
-### Logger.instance ⇒ <code>[Logger](#Logger)</code>
+## get() ⇒ <code>[Logger](#Logger)</code>
 Retrieves the current singleton instance, creating a new one if needed.
 
-**Kind**: static property of <code>[Logger](#Logger)</code>  
+**Kind**: global function  
 **Returns**: <code>[Logger](#Logger)</code> - this - The singleton Instance  
-<a name="Logger.getInstance"></a>
-
-### Logger.getInstance([options]) ⇒ <code>[Logger](#Logger)</code>
-Retrieves the current singleton instance, creating a new one if needed. 
-It allows, when creating the first time, a set of options. Otherwise, it will return the singleton instance
-
-**Kind**: static method of <code>[Logger](#Logger)</code>  
-**Returns**: <code>[Logger](#Logger)</code> - this - The singleton Instance  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| [options] | <code>Object</code> | Additional options. See [Logger#constructor](Logger#constructor) |
-
-<a name="Logger.__dropInstance"></a>
-
-### Logger.__dropInstance()
-Destroy the current singleton instance
-
-**Kind**: static method of <code>[Logger](#Logger)</code>  

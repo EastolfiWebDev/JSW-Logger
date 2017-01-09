@@ -2,20 +2,20 @@ var gulp = require("gulp");
 var fs = require("fs");
 var gutil = require("gulp-util");
 var rename = require("gulp-rename");
-var jsdoc = require("gulp-jsdoc3");
+var typedoc = require("gulp-typedoc");
 var jsdoc2md = require("jsdoc-to-markdown");
 var gulpJsdoc2md = require("gulp-jsdoc-to-markdown");
 var conventionalChangelog = require("gulp-conventional-changelog");
 
 gulp.task("doc:api:full", function () {
-    return jsdoc2md.render({ files: "src/**/*.js" })
+    return jsdoc2md.render({ files: "lib/**/*.js" })
     .then(function(output) {
         return fs.writeFileSync("api/index.md", output);
     });
 });
 
 gulp.task("doc:api:files", function () {
-    return gulp.src(["src/JSW-Logger.js"])
+    return gulp.src(["lib/JSW-Logger.js"])
         .pipe(gulpJsdoc2md(/*{ template: fs.readFileSync("./readme.hbs", "utf8") }*/))
         .on("error", function (err) {
             gutil.log(gutil.colors.red("jsdoc2md failed"), err.message);
@@ -27,10 +27,29 @@ gulp.task("doc:api:files", function () {
 });
 
 gulp.task("doc:app", function (cb) {
-    var config = require("../../jsdoc.conf.json");
+    return gulp.src("./src/JSW-Logger.ts")
+        .pipe(typedoc({
+            // typescript
+            target: "es6",
+    		module: "commonjs",
+    		moduleResolution: "node",
+    		experimentalDecorators: true,
+    		emitDecoratorMetadata: true,
+    		noImplicitAny: false,
+    		suppressImplicitAnyIndexErrors: true,
+    		
+    		// typedoc
+    		out: "docs",
+    		json: "docs/out.json",
+    		
+    		name: "JSW Logger",
+    		ignoreCompilerErrors: false,
+    		version: true
+        }));
     
-    gulp.src(["./src/**/*.js"], {read: false})
-        .pipe(jsdoc(config, cb));
+    // var config = require("../../jsdoc.conf.json");
+    // gulp.src(["./src/**/*.js"], {read: false})
+    //     .pipe(jsdoc(config, cb));
 });
 
 gulp.task("changelog", function () {

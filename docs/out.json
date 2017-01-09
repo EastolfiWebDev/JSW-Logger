@@ -1,0 +1,1692 @@
+{
+	"id": 0,
+	"name": "JSW Logger",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 1,
+			"name": "\"JSW-Logger\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "/home/ubuntu/workspace/src/JSW-Logger.ts",
+			"children": [
+				{
+					"id": 17,
+					"name": "Logger",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {
+						"isExported": true,
+						"hasExportAssignment": true
+					},
+					"comment": {
+						"shortText": "Logger",
+						"tags": [
+							{
+								"tag": "module",
+								"text": "Logger"
+							},
+							{
+								"tag": "constructor",
+								"text": ""
+							},
+							{
+								"tag": "since",
+								"text": "1.0.0\n"
+							},
+							{
+								"tag": "classdesc",
+								"text": "Logging module singleton which inherits the Winston Logger module.\n         By default:\n             <ol>\n                 <li>Writes all the HANDLED exceptions under a log file in \"logs/handledException.log\"</li>\n                 <li>Writes in the console all warnings and erros</li>\n             </ol>\n"
+							},
+							{
+								"tag": "param",
+								"text": "Enforcer internal object to avoid instanciating as \"new Logger()\"",
+								"param": "enforcer"
+							},
+							{
+								"tag": "param",
+								"text": "Additional options\n",
+								"param": "[options]"
+							},
+							{
+								"tag": "param",
+								"text": "When set to true hides all logs (usefull when running tests)",
+								"param": "[options.hideAllLogs=false]"
+							},
+							{
+								"tag": "param",
+								"text": "Whether if throw an exception when logged trought the Logger#throw method\n",
+								"param": "[options.throwError=true]"
+							}
+						]
+					},
+					"children": [
+						{
+							"id": 19,
+							"name": "constructor",
+							"kind": 512,
+							"kindString": "Constructor",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 20,
+									"name": "new Logger",
+									"kind": 16384,
+									"kindString": "Constructor signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 21,
+											"name": "enforcer",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 22,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reflection",
+												"declaration": {
+													"id": 23,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {
+														"isExported": true
+													}
+												}
+											},
+											"defaultValue": " {}"
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Logger",
+										"id": 17
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 112,
+									"character": 45
+								}
+							]
+						},
+						{
+							"id": 18,
+							"name": "options",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPrivate": true,
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 112,
+									"character": 19
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Options",
+								"id": 2
+							},
+							"defaultValue": " new Options()"
+						},
+						{
+							"id": 68,
+							"name": "instance",
+							"kind": 262144,
+							"kindString": "Accessor",
+							"flags": {
+								"isStatic": true,
+								"isExported": true
+							},
+							"comment": {
+								"shortText": "Retrieves the current singleton instance, creating a new one if needed.",
+								"returns": "this - The singleton Instance\n",
+								"tags": [
+									{
+										"tag": "static",
+										"text": "\n"
+									}
+								]
+							},
+							"getSignature": [
+								{
+									"id": 69,
+									"name": "__get",
+									"kind": 524288,
+									"kindString": "Get signature",
+									"flags": {},
+									"comment": {
+										"shortText": "Retrieves the current singleton instance, creating a new one if needed.",
+										"returns": "this - The singleton Instance\n",
+										"tags": [
+											{
+												"tag": "static",
+												"text": "\n"
+											}
+										]
+									},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 262,
+									"character": 23
+								}
+							]
+						},
+						{
+							"id": 33,
+							"name": "debug",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 34,
+									"name": "debug",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 35,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 36,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 214,
+									"character": 9
+								}
+							]
+						},
+						{
+							"id": 61,
+							"name": "error",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 62,
+									"name": "error",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 63,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 64,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 235,
+									"character": 9
+								}
+							]
+						},
+						{
+							"id": 41,
+							"name": "info",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 42,
+									"name": "info",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 43,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 44,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 220,
+									"character": 8
+								}
+							]
+						},
+						{
+							"id": 45,
+							"name": "inform",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 46,
+									"name": "inform",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 47,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 48,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 223,
+									"character": 10
+								}
+							]
+						},
+						{
+							"id": 49,
+							"name": "information",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 50,
+									"name": "information",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 51,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 52,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 226,
+									"character": 15
+								}
+							]
+						},
+						{
+							"id": 24,
+							"name": "log",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 25,
+									"name": "log",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 26,
+											"name": "level",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 27,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 28,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 154,
+									"character": 7
+								}
+							]
+						},
+						{
+							"id": 29,
+							"name": "silly",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 30,
+									"name": "silly",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 31,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 32,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 211,
+									"character": 9
+								}
+							]
+						},
+						{
+							"id": 65,
+							"name": "throw",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 66,
+									"name": "throw",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"shortText": "Method to throw a controlled exception, logging it to a log file.",
+										"tags": [
+											{
+												"tag": "method",
+												"text": "Logger#throw\n"
+											}
+										]
+									},
+									"parameters": [
+										{
+											"id": 67,
+											"name": "error",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"comment": {
+												"text": "The exception or message to be thrown."
+											},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "void"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 247,
+									"character": 9
+								}
+							]
+						},
+						{
+							"id": 37,
+							"name": "verbose",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 38,
+									"name": "verbose",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 39,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 40,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 217,
+									"character": 11
+								}
+							]
+						},
+						{
+							"id": 53,
+							"name": "warn",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 54,
+									"name": "warn",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 55,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 56,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 229,
+									"character": 8
+								}
+							]
+						},
+						{
+							"id": 57,
+							"name": "warning",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 58,
+									"name": "warning",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 59,
+											"name": "message",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 60,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "reference",
+												"name": "Array",
+												"typeArguments": [
+													{
+														"type": "instrinct",
+														"name": "any"
+													}
+												]
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 232,
+									"character": 11
+								}
+							]
+						},
+						{
+							"id": 73,
+							"name": "___dropInstance",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isStatic": true,
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 74,
+									"name": "___dropInstance",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"shortText": "Destroy the current singleton instance",
+										"tags": [
+											{
+												"tag": "static",
+												"text": "\n"
+											}
+										]
+									},
+									"type": {
+										"type": "instrinct",
+										"name": "void"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 296,
+									"character": 25
+								}
+							]
+						},
+						{
+							"id": 70,
+							"name": "getInstance",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isStatic": true,
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 71,
+									"name": "getInstance",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {
+										"shortText": "Retrieves the current singleton instance, creating a new one if needed.\nIt allows, when creating the first time, a set of options. Otherwise, it will return the singleton instance",
+										"returns": "this - The singleton Instance\n",
+										"tags": [
+											{
+												"tag": "static",
+												"text": "\n"
+											}
+										]
+									},
+									"parameters": [
+										{
+											"id": 72,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 281,
+									"character": 22
+								}
+							]
+						}
+					],
+					"groups": [
+						{
+							"title": "Constructors",
+							"kind": 512,
+							"children": [
+								19
+							]
+						},
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								18
+							]
+						},
+						{
+							"title": "Accessors",
+							"kind": 262144,
+							"children": [
+								68
+							]
+						},
+						{
+							"title": "Methods",
+							"kind": 2048,
+							"children": [
+								33,
+								61,
+								41,
+								45,
+								49,
+								24,
+								29,
+								65,
+								37,
+								53,
+								57,
+								73,
+								70
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 111,
+							"character": 12
+						}
+					]
+				},
+				{
+					"id": 2,
+					"name": "Options",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {},
+					"children": [
+						{
+							"id": 14,
+							"name": "constructor",
+							"kind": 512,
+							"kindString": "Constructor",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 15,
+									"name": "new Options",
+									"kind": 16384,
+									"kindString": "Constructor signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 16,
+											"name": "options",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isOptional": true
+											},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Options",
+										"id": 2
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 33,
+									"character": 6
+								}
+							]
+						},
+						{
+							"id": 7,
+							"name": "handledExceptionsLogPath",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPublic": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 25,
+									"character": 35
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "String"
+							}
+						},
+						{
+							"id": 4,
+							"name": "hideAllLogs",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPublic": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 22,
+									"character": 22
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 5,
+							"name": "hideLevelLog",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPublic": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 23,
+									"character": 23
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 3,
+							"name": "level",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPublic": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 21,
+									"character": 16
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Number"
+							}
+						},
+						{
+							"id": 6,
+							"name": "throwError",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isPublic": true
+							},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 24,
+									"character": 21
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "boolean"
+							}
+						},
+						{
+							"id": 8,
+							"name": "___defaultOptions",
+							"kind": 2097152,
+							"kindString": "Object literal",
+							"flags": {
+								"isPrivate": true
+							},
+							"children": [
+								{
+									"id": 13,
+									"name": "handledExceptionsLogPath",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "JSW-Logger.ts",
+											"line": 32,
+											"character": 32
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "string"
+									},
+									"defaultValue": "\"/../logs/handledException.log\""
+								},
+								{
+									"id": 10,
+									"name": "hideAllLogs",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "JSW-Logger.ts",
+											"line": 29,
+											"character": 19
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "boolean"
+									},
+									"defaultValue": "false"
+								},
+								{
+									"id": 11,
+									"name": "hideLevelLog",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "JSW-Logger.ts",
+											"line": 30,
+											"character": 20
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "boolean"
+									},
+									"defaultValue": "false"
+								},
+								{
+									"id": 9,
+									"name": "level",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "JSW-Logger.ts",
+											"line": 28,
+											"character": 13
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "number"
+									},
+									"defaultValue": "2"
+								},
+								{
+									"id": 12,
+									"name": "throwError",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {},
+									"sources": [
+										{
+											"fileName": "JSW-Logger.ts",
+											"line": 31,
+											"character": 18
+										}
+									],
+									"type": {
+										"type": "instrinct",
+										"name": "boolean"
+									},
+									"defaultValue": "true"
+								}
+							],
+							"groups": [
+								{
+									"title": "Variables",
+									"kind": 32,
+									"children": [
+										13,
+										10,
+										11,
+										9,
+										12
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 27,
+									"character": 28
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "object"
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Constructors",
+							"kind": 512,
+							"children": [
+								14
+							]
+						},
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								7,
+								4,
+								5,
+								3,
+								6
+							]
+						},
+						{
+							"title": "Object literals",
+							"kind": 2097152,
+							"children": [
+								8
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 20,
+							"character": 13
+						}
+					]
+				},
+				{
+					"id": 86,
+					"name": "LEVELS_STR",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 58,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Array",
+						"typeArguments": [
+							{
+								"type": "instrinct",
+								"name": "string"
+							}
+						]
+					},
+					"defaultValue": " [\"ERROR\", \"WARN\", \"INFO\", \"LOG\", \"VERBOSE\", \"DEBUG\", \"SILLY\"]"
+				},
+				{
+					"id": 75,
+					"name": "TRANSPORT_PREFIX",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 14,
+							"character": 22
+						}
+					],
+					"type": {
+						"type": "stringLiteral",
+						"value": "EAMP_LOGGER"
+					},
+					"defaultValue": "\"EAMP_LOGGER\""
+				},
+				{
+					"id": 76,
+					"name": "singleton",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 17,
+							"character": 15
+						}
+					],
+					"type": {
+						"type": "instrinct",
+						"name": "symbol"
+					},
+					"defaultValue": " Symbol()"
+				},
+				{
+					"id": 77,
+					"name": "singletonEnforcer",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 18,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "instrinct",
+						"name": "symbol"
+					},
+					"defaultValue": " Symbol()"
+				},
+				{
+					"id": 87,
+					"name": "interpolate",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 88,
+							"name": "interpolate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 89,
+									"name": "string",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								},
+								{
+									"id": 90,
+									"name": "values",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 60,
+							"character": 20
+						}
+					]
+				},
+				{
+					"id": 78,
+					"name": "LEVELS",
+					"kind": 2097152,
+					"kindString": "Object literal",
+					"flags": {},
+					"children": [
+						{
+							"id": 80,
+							"name": "debug",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 50,
+									"character": 11
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "5"
+						},
+						{
+							"id": 85,
+							"name": "error",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 55,
+									"character": 11
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "0"
+						},
+						{
+							"id": 83,
+							"name": "info",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 53,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "2"
+						},
+						{
+							"id": 82,
+							"name": "log",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 52,
+									"character": 9
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "3"
+						},
+						{
+							"id": 79,
+							"name": "silly",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 49,
+									"character": 11
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "6"
+						},
+						{
+							"id": 81,
+							"name": "verbose",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 51,
+									"character": 13
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "4"
+						},
+						{
+							"id": 84,
+							"name": "warn",
+							"kind": 32,
+							"kindString": "Variable",
+							"flags": {},
+							"sources": [
+								{
+									"fileName": "JSW-Logger.ts",
+									"line": 54,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "number"
+							},
+							"defaultValue": "1"
+						}
+					],
+					"groups": [
+						{
+							"title": "Variables",
+							"kind": 32,
+							"children": [
+								80,
+								85,
+								83,
+								82,
+								79,
+								81,
+								84
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "JSW-Logger.ts",
+							"line": 48,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "instrinct",
+						"name": "object"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Classes",
+					"kind": 128,
+					"children": [
+						17,
+						2
+					]
+				},
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						86,
+						75,
+						76,
+						77
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						87
+					]
+				},
+				{
+					"title": "Object literals",
+					"kind": 2097152,
+					"children": [
+						78
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "JSW-Logger.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "External modules",
+			"kind": 1,
+			"children": [
+				1
+			]
+		}
+	]
+}

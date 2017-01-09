@@ -33,7 +33,6 @@ gulp.task("version", function () {
 gulp.task("commit-changes", function () {
     var kind = "patch";
     
-    
     if (options.major) {
         kind = "major";
     } else if (options.minor) {
@@ -46,6 +45,12 @@ gulp.task("commit-changes", function () {
     return gulp.src(".")
         .pipe(git.add())
         .pipe(git.commit(msg));
+});
+
+gulp.task("commit-changelog", ["changelog"], function() {
+    return gulp.src("CHANGELOG.md")
+        .pipe(git.add())
+        .pipe(git.commit("doc(changelog): Changelog up to date"));
 });
 
 gulp.task("push-changes", function (cb) {
