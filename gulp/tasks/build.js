@@ -1,16 +1,16 @@
-var gulp = require('gulp');
-var del = require('del');
+var gulp = require("gulp");
+var del = require("del");
 var ts = require("gulp-typescript");
 var tsify = require("tsify");
-var minify = require('gulp-minify');
+var minify = require("gulp-minify");
 var browserify = require("browserify");
-var sourcemaps = require('gulp-sourcemaps');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+var sourcemaps = require("gulp-sourcemaps");
+var source = require("vinyl-source-stream");
+var buffer = require("vinyl-buffer");
 
-gulp.task('clean:lib', function () {
+gulp.task("clean:lib", function () {
     return del([
-        'lib/**/*.js'
+        "lib/**/*.js"
     ]);
 });
 
@@ -23,26 +23,26 @@ gulp.task("build:app", ["clean:lib"], function () {
         .pipe(gulp.dest("lib"));
 });
 
-gulp.task('bundle:app', ['build:app'], function() {
+gulp.task("bundle:app", ["build:app"], function() {
     return browserify({
-        entries: ['./index.js'],
+        entries: ["./index.js"],
         debug: true
     })
     .plugin(tsify)
     .bundle()
-    .pipe(source('./jsw-logger.js'))
+    .pipe(source("./jsw-logger.js"))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist'));
+    .pipe(sourcemaps.write("./"))
+    .pipe(gulp.dest("./dist"));
 });
 
-gulp.task('compress:app', function() {
-    return gulp.src('dist/jsw-logger.js')
+gulp.task("compress:app", function() {
+    return gulp.src("dist/jsw-logger.js")
         .pipe(minify({
             ext:{
-                min:'.min.js'
+                min:".min.js"
             }
         }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });

@@ -1,4 +1,4 @@
-var Logger = require('./src/JSW-Logger');
+var Logger = require("./src/JSW-Logger");
 
 module.exports = Logger;
 
