@@ -1,7 +1,7 @@
 var gulp = require('gulp');
-// var fs = require('fs');
 var del = require('del');
-var babel = require('gulp-babel');
+var ts = require("gulp-typescript");
+var tsify = require("tsify");
 var minify = require('gulp-minify');
 var browserify = require("browserify");
 var sourcemaps = require('gulp-sourcemaps');
@@ -14,14 +14,13 @@ gulp.task('clean:lib', function () {
     ]);
 });
 
-gulp.task('build:app', ['clean:lib'], function () {
-    return gulp.src('src/**/*.js')
+var tsProject = ts.createProject("tsconfig.json");
+gulp.task("build:app", ["clean:lib"], function () {
+    return gulp.src("src/**/*.ts")
         .pipe(sourcemaps.init())
-        .pipe(babel({
-            presets: ['es2015']
-        }))
+        .pipe(tsProject()).js
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('lib'));
+        .pipe(gulp.dest("lib"));
 });
 
 gulp.task('bundle:app', ['build:app'], function() {
@@ -29,7 +28,7 @@ gulp.task('bundle:app', ['build:app'], function() {
         entries: ['./index.js'],
         debug: true
     })
-    .transform("babelify", {presets: ["es2015", "react"]})
+    .plugin(tsify)
     .bundle()
     .pipe(source('./jsw-logger.js'))
     .pipe(buffer())
@@ -40,40 +39,10 @@ gulp.task('bundle:app', ['build:app'], function() {
 
 gulp.task('compress:app', function() {
     return gulp.src('dist/jsw-logger.js')
-        // .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(minify({
             ext:{
                 min:'.min.js'
             }
         }))
-        // .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 });
-
-// gulp.task('bundle', function() {
-//     // Single entry point to browserify 
-//     return gulp.src(['./index.js'/*, './node_modules/jsw-logger/index.js'*/])
-//         .pipe(browserify({
-//             insertGlobals : true
-//         }))
-//         .pipe(gulp.dest('./build'));
-// });
-
-// gulp.task('bundle-client', function() {
-//     return gulp.src('tests/index.js')
-//     // return gulp.src('index_browser.js')
-//         .pipe(browserify({
-//           insertGlobals: true
-//         }))
-//         .pipe(rename('mongo-portable.js'))
-//         .pipe(gulp.dest('build'));
-// });
-
-// gulp.task('bundle-test', ['bundle-client'], function() {
-//     return gulp.src('tests/specs/index.js')
-//         .pipe(browserify({
-//           insertGlobals: true
-//         }))
-//         .pipe(rename('client-test.js'))
-//         .pipe(gulp.dest('tests/specs'));
-// });

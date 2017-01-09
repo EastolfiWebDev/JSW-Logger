@@ -15,7 +15,7 @@ if (browser) {
     JSWLogger = require('../../lib/JSW-Logger.js');
 }
 
-describe('Logger - Web', function() {
+describe('Logger' + (browser ? "- Web" : ""), function() {
     describe('#Constructor', function() {
         it('should have the dependencies ready', function() {
             expect(JSWLogger).to.exist;
@@ -56,8 +56,8 @@ describe('Logger - Web', function() {
             expect(logger).to.exist;
             
             expect(logger).to.have.ownProperty('options');
-            expect(logger.options).to.have.ownProperty('testing');
-            expect(logger.options.testing).to.be.equal(true);
+            expect(logger.options).to.not.have.ownProperty('testing');
+            expect(logger.options).to.have.ownProperty("hideAllLogs", true);
         });
         
         it('should be able to retrieve the instance', function() {
@@ -66,30 +66,31 @@ describe('Logger - Web', function() {
             expect(logger).to.exist;
             
             expect(logger).to.have.ownProperty('options');
-            expect(logger.options).to.have.ownProperty('testing');
-            expect(logger.options.testing).to.be.equal(true);
+            expect(logger.options).to.not.have.ownProperty('testing');
+            expect(logger.options).to.have.ownProperty("hideAllLogs", true);
         });
         
         it('should fail when re-instanciating with options', function() {
-            var logger = JSWLogger.getInstance({ testing: false });
+            var logger = JSWLogger.getInstance({ hideAllLogs: false });
             
             expect(logger).to.exist;
             
             expect(logger).to.have.ownProperty('options');
-            expect(logger.options).to.have.ownProperty('testing');
-            expect(logger.options.testing).to.be.equal(true);
+            expect(logger.options).to.not.have.ownProperty('testing');
+            expect(logger.options).to.have.ownProperty("hideAllLogs", true);
         });
         
         it('should be able to drop the instance', function() {
             JSWLogger.__dropInstance();
             
-            var logger = JSWLogger.getInstance({ testing: false });
+            var logger = JSWLogger.getInstance({ hideLevelLog: true });
             
             expect(logger).to.exist;
             
             expect(logger).to.have.ownProperty('options');
-            expect(logger.options).to.have.ownProperty('testing');
-            expect(logger.options.testing).to.be.equal(false);
+            expect(logger.options).to.not.have.ownProperty('testing');
+            expect(logger.options).to.have.ownProperty("hideAllLogs", false);
+            expect(logger.options).to.have.ownProperty("hideLevelLog", true);
         });
         
         it('should be able to create a first instance without options', function() {

@@ -74,8 +74,3 @@ gulp.task('test:browser', ['bundle:app'], function () {
     return gulp.src('test/fixtures/index.html', {read: false})
         .pipe(mochaPhantomJS({reporter: 'nyan'}));
 });
-
-// gulp.task('test-client', ['bundle-test'], function() {
-//     return gulp.src('tests/fixtures/index.html')
-//         .pipe(mochaPhantomJS({reporter: 'nyan'}));
-// });
