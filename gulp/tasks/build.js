@@ -50,7 +50,7 @@ gulp.task("bundle:app", ["clean:dist"], function() {
         .pipe(gulp.dest("./dist"));
 });
 
-gulp.task("compress:app", function() {
+gulp.task("compress:app", ["bundle:app"], function() {
     return gulp.src("dist/jsw-logger.js")
         .pipe(minify({
             ext:{

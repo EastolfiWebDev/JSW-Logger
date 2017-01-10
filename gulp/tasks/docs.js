@@ -8,14 +8,14 @@ var gulpJsdoc2md = require("gulp-jsdoc-to-markdown");
 var conventionalChangelog = require("gulp-conventional-changelog");
 
 gulp.task("doc:api:full", function () {
-    return jsdoc2md.render({ files: "lib/**/*.js" })
+    return jsdoc2md.render({ files: "src/**/*.js" })
     .then(function(output) {
         return fs.writeFileSync("api/index.md", output);
     });
 });
 
 gulp.task("doc:api:files", function () {
-    return gulp.src(["lib/JSW-Logger.js"])
+    return gulp.src(["src/JSW-Logger.js"])
         .pipe(gulpJsdoc2md(/*{ template: fs.readFileSync("./readme.hbs", "utf8") }*/))
         .on("error", function (err) {
             gutil.log(gutil.colors.red("jsdoc2md failed"), err.message);

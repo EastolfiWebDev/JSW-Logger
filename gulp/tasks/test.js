@@ -70,7 +70,7 @@ gulp.task("test:app", ["build:app"], function () {
         .pipe(mocha({reporter: "nyan"}));
 });
 
-gulp.task("test:browser", ["bundle:app"], function () { 
+gulp.task("test:browser", ["compress:app"], function () { 
     return gulp.src("test/index.html", {read: false})
         .pipe(mochaPhantomJS({reporter: "nyan"}));
 });
