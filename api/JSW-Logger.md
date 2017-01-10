@@ -1,7 +1,7 @@
 ## Classes
 
 <dl>
-<dt><a href="#Logger">Logger</a></dt>
+<dt><a href="#JSWLogger">JSWLogger</a></dt>
 <dd><p>Logging module singleton which inherits the Winston Logger module.
          By default:
              <ol>
@@ -14,14 +14,14 @@
 ## Functions
 
 <dl>
-<dt><a href="#get">get()</a> ⇒ <code><a href="#Logger">Logger</a></code></dt>
+<dt><a href="#get">get()</a> ⇒ <code><a href="#JSWLogger">JSWLogger</a></code></dt>
 <dd><p>Retrieves the current singleton instance, creating a new one if needed.</p>
 </dd>
 </dl>
 
-<a name="Logger"></a>
+<a name="JSWLogger"></a>
 
-## Logger
+## JSWLogger
 Logging module singleton which inherits the Winston Logger module.
          By default:
              <ol>
@@ -32,39 +32,39 @@ Logging module singleton which inherits the Winston Logger module.
 **Kind**: global class  
 **Since**: 1.0.0  
 
-* [Logger](#Logger)
-    * [new Logger(enforcer, [options])](#new_Logger_new)
-    * [.throw(error, [throwError])](#Logger+throw)
+* [JSWLogger](#JSWLogger)
+    * [new JSWLogger(enforcer, [options])](#new_JSWLogger_new)
+    * [.throw(error, [throwError])](#JSWLogger+throw)
 
-<a name="new_Logger_new"></a>
+<a name="new_JSWLogger_new"></a>
 
-### new Logger(enforcer, [options])
-Logger
+### new JSWLogger(enforcer, [options])
+JSWLogger
 
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| enforcer | <code>Symbol</code> |  | Enforcer internal object to avoid instanciating as "new Logger()" |
+| enforcer | <code>Symbol</code> |  | Enforcer internal object to avoid instanciating as "new JSWLogger()" |
 | [options] | <code>Object</code> |  | Additional options |
 | [options.hideAllLogs] | <code>Boolean</code> | <code>false</code> | When set to true hides all logs (usefull when running tests) |
 | [options.throwError] | <code>Boolean</code> | <code>true</code> | Whether if throw an exception when logged trought the Logger#throw method |
 
-<a name="Logger+throw"></a>
+<a name="JSWLogger+throw"></a>
 
-### logger.throw(error, [throwError])
+### jswLogger.throw(error, [throwError])
 Method to throw a controlled exception, logging it to a log file.
 
-**Kind**: instance method of <code>[Logger](#Logger)</code>  
+**Kind**: instance method of <code>[JSWLogger](#JSWLogger)</code>  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | error | <code>Error</code> &#124; <code>String</code> |  | The exception or message to be thrown. |
-| [throwError] | <code>Boolean</code> | <code>true</code> | Same as Logger->options->throwError |
+| [throwError] | <code>Boolean</code> | <code>true</code> | Same as JSWLogger->options->throwError |
 
 <a name="get"></a>
 
-## get() ⇒ <code>[Logger](#Logger)</code>
+## get() ⇒ <code>[JSWLogger](#JSWLogger)</code>
 Retrieves the current singleton instance, creating a new one if needed.
 
 **Kind**: global function  
-**Returns**: <code>[Logger](#Logger)</code> - this - The singleton Instance  
+**Returns**: <code>[JSWLogger](#JSWLogger)</code> - this - The singleton Instance  

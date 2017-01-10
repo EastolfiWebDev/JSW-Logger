@@ -16,19 +16,16 @@
 			"children": [
 				{
 					"id": 17,
-					"name": "Logger",
+					"name": "JSWLogger",
 					"kind": 128,
 					"kindString": "Class",
-					"flags": {
-						"isExported": true,
-						"hasExportAssignment": true
-					},
+					"flags": {},
 					"comment": {
-						"shortText": "Logger",
+						"shortText": "JSWLogger",
 						"tags": [
 							{
 								"tag": "module",
-								"text": "Logger"
+								"text": "JSWLogger"
 							},
 							{
 								"tag": "constructor",
@@ -44,7 +41,7 @@
 							},
 							{
 								"tag": "param",
-								"text": "Enforcer internal object to avoid instanciating as \"new Logger()\"",
+								"text": "Enforcer internal object to avoid instanciating as \"new JSWLogger()\"",
 								"param": "enforcer"
 							},
 							{
@@ -70,13 +67,11 @@
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 20,
-									"name": "new Logger",
+									"name": "new JSWLogger",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
@@ -105,9 +100,7 @@
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
-													"flags": {
-														"isExported": true
-													}
+													"flags": {}
 												}
 											},
 											"defaultValue": " {}"
@@ -115,7 +108,7 @@
 									],
 									"type": {
 										"type": "reference",
-										"name": "Logger",
+										"name": "JSWLogger",
 										"id": 17
 									}
 								}
@@ -134,8 +127,7 @@
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isPrivate": true,
-								"isExported": true
+								"isPrivate": true
 							},
 							"sources": [
 								{
@@ -157,8 +149,7 @@
 							"kind": 262144,
 							"kindString": "Accessor",
 							"flags": {
-								"isStatic": true,
-								"isExported": true
+								"isStatic": true
 							},
 							"comment": {
 								"shortText": "Retrieves the current singleton instance, creating a new one if needed.",
@@ -206,9 +197,7 @@
 							"name": "debug",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 34,
@@ -267,9 +256,7 @@
 							"name": "error",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 62,
@@ -328,9 +315,7 @@
 							"name": "info",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 42,
@@ -389,9 +374,7 @@
 							"name": "inform",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 46,
@@ -450,9 +433,7 @@
 							"name": "information",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 50,
@@ -511,9 +492,7 @@
 							"name": "log",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 25,
@@ -583,9 +562,7 @@
 							"name": "silly",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 30,
@@ -644,9 +621,7 @@
 							"name": "throw",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 66,
@@ -659,7 +634,7 @@
 										"tags": [
 											{
 												"tag": "method",
-												"text": "Logger#throw\n"
+												"text": "JSWLogger#throw\n"
 											}
 										]
 									},
@@ -698,9 +673,7 @@
 							"name": "verbose",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 38,
@@ -759,9 +732,7 @@
 							"name": "warn",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 54,
@@ -820,9 +791,7 @@
 							"name": "warning",
 							"kind": 2048,
 							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
+							"flags": {},
 							"signatures": [
 								{
 									"id": 58,
@@ -882,8 +851,7 @@
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isStatic": true,
-								"isExported": true
+								"isStatic": true
 							},
 							"signatures": [
 								{
@@ -921,8 +889,7 @@
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
-								"isStatic": true,
-								"isExported": true
+								"isStatic": true
 							},
 							"signatures": [
 								{
@@ -1015,7 +982,7 @@
 						{
 							"fileName": "JSW-Logger.ts",
 							"line": 111,
-							"character": 12
+							"character": 15
 						}
 					]
 				},
