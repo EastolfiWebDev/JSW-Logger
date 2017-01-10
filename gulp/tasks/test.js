@@ -71,6 +71,6 @@ gulp.task("test:app", ["build:app"], function () {
 });
 
 gulp.task("test:browser", ["bundle:app"], function () { 
-    return gulp.src("test/fixtures/index.html", {read: false})
+    return gulp.src("test/index.html", {read: false})
         .pipe(mochaPhantomJS({reporter: "nyan"}));
 });
