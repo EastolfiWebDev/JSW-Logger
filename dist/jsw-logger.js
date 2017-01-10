@@ -1,9 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var Logger = require("./src/JSW-Logger");
+"use strict";
+var JSW_Logger_1 = require("./src/JSW-Logger");
+try {
+    if (window) {
+        window["JSWLogger"] = JSW_Logger_1.JSWLogger; // Logger.default;
+    }
+}
+catch (e) { }
+module.exports = JSW_Logger_1.JSWLogger;
 
-module.exports = Logger;
 
-if (window) window.Logger = Logger;
+
 },{"./src/JSW-Logger":3}],2:[function(require,module,exports){
 (function (global){
 /**
@@ -16157,7 +16164,6 @@ if (window) window.Logger = Logger;
 }.call(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-
 },{}],3:[function(require,module,exports){
 "use strict";
 /**
@@ -16230,9 +16236,9 @@ function interpolate(string, values) {
 //     });
 // }
 /**
- * Logger
+ * JSWLogger
  *
- * @module Logger
+ * @module JSWLogger
  * @constructor
  * @since 1.0.0
  *
@@ -16243,14 +16249,14 @@ function interpolate(string, values) {
  *                  <li>Writes in the console all warnings and erros</li>
  *              </ol>
  *
- * @param {Symbol} enforcer - Enforcer internal object to avoid instanciating as "new Logger()"
+ * @param {Symbol} enforcer - Enforcer internal object to avoid instanciating as "new JSWLogger()"
  * @param {Object} [options] - Additional options
  *
  * @param {Boolean} [options.hideAllLogs=false] - When set to true hides all logs (usefull when running tests)
  * @param {Boolean} [options.throwError=true] - Whether if throw an exception when logged trought the Logger#throw method
  */
-var Logger = (function () {
-    function Logger(enforcer, options) {
+var JSWLogger = (function () {
+    function JSWLogger(enforcer, options) {
         if (options === void 0) { options = {}; }
         this.options = new Options();
         if (enforcer != singletonEnforcer)
@@ -16286,7 +16292,7 @@ var Logger = (function () {
         //     }
         // });
     }
-    Logger.prototype.log = function (level, message) {
+    JSWLogger.prototype.log = function (level, message) {
         var options = [];
         for (var _i = 2; _i < arguments.length; _i++) {
             options[_i - 2] = arguments[_i];
@@ -16345,63 +16351,63 @@ var Logger = (function () {
             return false;
         }
     };
-    Logger.prototype.silly = function (message) {
+    JSWLogger.prototype.silly = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.silly, message || "", options);
     };
-    Logger.prototype.debug = function (message) {
+    JSWLogger.prototype.debug = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.debug, message || "", options);
     };
-    Logger.prototype.verbose = function (message) {
+    JSWLogger.prototype.verbose = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.verbose, message || "", options);
     };
-    Logger.prototype.info = function (message) {
+    JSWLogger.prototype.info = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.info, message || "", options);
     };
-    Logger.prototype.inform = function (message) {
+    JSWLogger.prototype.inform = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.info, message || "", options);
     };
-    Logger.prototype.information = function (message) {
+    JSWLogger.prototype.information = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.info, message || "", options);
     };
-    Logger.prototype.warn = function (message) {
+    JSWLogger.prototype.warn = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.warn, message || "", options);
     };
-    Logger.prototype.warning = function (message) {
+    JSWLogger.prototype.warning = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
         return this.log(LEVELS.warn, message || "", options);
     };
-    Logger.prototype.error = function (message) {
+    JSWLogger.prototype.error = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
@@ -16411,29 +16417,29 @@ var Logger = (function () {
     /**
      * Method to throw a controlled exception, logging it to a log file.
      *
-     * @method Logger#throw
+     * @method JSWLogger#throw
      *
      * @param {Error|String} error - The exception or message to be thrown.
-     * @param {Boolean} [throwError=true] - Same as Logger->options->throwError
+     * @param {Boolean} [throwError=true] - Same as JSWLogger->options->throwError
      */
-    Logger.prototype.throw = function (error) {
+    JSWLogger.prototype.throw = function (error) {
         if (_.isString(error))
             error = new Error(error);
         this.error(error.message);
         if (this.options.throwError)
             throw error;
     };
-    Object.defineProperty(Logger, "instance", {
+    Object.defineProperty(JSWLogger, "instance", {
         /**
          * Retrieves the current singleton instance, creating a new one if needed.
          *
          * @static
          *
-         * @returns {Logger} this - The singleton Instance
+         * @returns {JSWLogger} this - The singleton Instance
          */
         get: function () {
             if (_.isNil(this[singleton])) {
-                this[singleton] = new Logger(singletonEnforcer);
+                this[singleton] = new JSWLogger(singletonEnforcer);
             }
             return this[singleton];
         },
@@ -16446,31 +16452,35 @@ var Logger = (function () {
      *
      * @static
      *
-     * @param {Object} [options] - Additional options. See {@link Logger#constructor}
+     * @param {Object} [options] - Additional options. See {@link JSWLogger#constructor}
      *
-     * @returns {Logger} this - The singleton Instance
+     * @returns {JSWLogger} this - The singleton Instance
      */
-    Logger.getInstance = function (options) {
+    JSWLogger.getInstance = function (options) {
         if (_.isNil(this[singleton])) {
-            this[singleton] = new Logger(singletonEnforcer, options);
+            this[singleton] = new JSWLogger(singletonEnforcer, options);
         }
         else {
-            Logger.instance.error("Singleton already instanciated. Ignoring options and retrieving current instance.");
+            JSWLogger.instance.error("Singleton already instanciated. Ignoring options and retrieving current instance.");
         }
-        return Logger.instance;
+        return JSWLogger.instance;
     };
     /**
      * Destroy the current singleton instance
      *
      * @static
      */
-    Logger.__dropInstance = function () {
+    JSWLogger.__dropInstance = function () {
         delete this[singleton];
     };
-    return Logger;
+    return JSWLogger;
 }());
-module.exports = Logger;
+exports.JSWLogger = JSWLogger;
+// module.exports = Logger;
+// export = Logger; 
 
-},{"lodash":2}]},{},[1])
+
+
+},{"lodash":2}]},{},[1]);
 
 //# sourceMappingURL=jsw-logger.js.map
