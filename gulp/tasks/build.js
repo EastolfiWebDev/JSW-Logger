@@ -1,7 +1,6 @@
 var gulp = require("gulp");
 var del = require("del");
 var ts = require("gulp-typescript");
-// var tsify = require("tsify");
 var minify = require("gulp-minify");
 var browserify = require("browserify");
 var sourcemaps = require("gulp-sourcemaps");
@@ -41,7 +40,6 @@ gulp.task("watch:app", ["build:app"], function () {
 gulp.task("bundle:app", ["clean:dist"], function() {
     return browserify({basedir: "./"})
         .add("index.js")
-        //.plugin(tsify)
         .bundle()
         .pipe(source("jsw-logger.js"))
         .pipe(buffer())
