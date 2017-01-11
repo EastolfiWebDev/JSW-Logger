@@ -1,5 +1,16 @@
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.0...v1.2.1) (2017-01-11)
+
+
+### Bug Fixes
+
+* **browser:** Resolve browser support ([dda9f0e](https://github.com/EastolfiWebDev/JSW-Logger/commit/dda9f0e))
+* Include Symbol support in source code ([787dded](https://github.com/EastolfiWebDev/JSW-Logger/commit/787dded))
+
+
+
 <a name="1.2.0"></a>
-# [1.2.0](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.1.0...v1.2.0) (2017-01-09)
+# [1.2.0](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.1.0...1.2.0) (2017-01-09)
 
 
 
