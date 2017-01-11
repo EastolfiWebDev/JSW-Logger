@@ -12,7 +12,12 @@ if (browser) {
     _JSWLogger = window.JSWLogger;
 } else {
     expect = require('chai').expect;
-    _JSWLogger = require('../../index.js');
+    
+    if (!!process.env.test_coverage) {
+        _JSWLogger = require('../../lib/JSW-Logger.js').JSWLogger;
+    } else {
+        _JSWLogger = require('../../index.js');
+    }
 }
 
 describe('Logger' + (browser ? "- Web" : ""), function() {

@@ -15,8 +15,17 @@ gulp.task("clean:coveralls", function () {
     ]);
 });
 
+gulp.task("coveralls:prepare", function () {
+    fs.mkdirSync("lib");
+    execSync("cp src/JSW-Logger.js lib/JSW-Logger.js");
+    
+    return;
+});
+
 gulp.task("jscoverage", function () {
-    return execSync("./node_modules/.bin/jscoverage --no-highlight lib lib-cov");
+    execSync("./node_modules/jscoverage/bin/jscoverage --no-highlight lib lib-cov");
+    
+    return;
 });
 
 gulp.task("coveralls:dirs", function() {
@@ -29,15 +38,13 @@ gulp.task("coveralls:dirs", function() {
 });
 
 gulp.task("coveralls:make", function() {
-    execSync("./node_modules/.bin/mocha test -R html-cov > test/results/coverage.html");
-    execSync("./node_modules/.bin/mocha test -R mocha-lcov-reporter > test/coverage/coverage-dist.lcov");
+    execSync("node test/coveralls.js");
     
     return;
 });
 
-gulp.task("coveralls:clean", function() {
-    execSync("rm -rf lib");
-    execSync("mv lib-orig lib");
+gulp.task("coveralls:finalize", function() {
+    execSync("rm -rf lib lib-orig");
     
     return;
 });
@@ -46,10 +53,11 @@ gulp.task("coveralls", function (cb) {
     runSequence(
         "build:app",
         "clean:coveralls",
+        "coveralls:prepare",
         "jscoverage",
         "coveralls:dirs",
         "coveralls:make",
-        "coveralls:clean",
+        "coveralls:finalize",
     function(error) {
         if (error) {
             console.log(error);
