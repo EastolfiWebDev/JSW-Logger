@@ -8,10 +8,11 @@
  * @license MIT Licensed
  */
 var _ = require("lodash");
+var core_js_1 = require("core-js");
 var TRANSPORT_PREFIX = "EAMP_LOGGER";
 // Singleton instance
-var singleton = Symbol();
-var singletonEnforcer = Symbol();
+var singleton = core_js_1.Symbol();
+var singletonEnforcer = core_js_1.Symbol();
 var Options = (function () {
     function Options(options) {
         this.__defaultOptions = {

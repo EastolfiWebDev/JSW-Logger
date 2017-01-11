@@ -10,6 +10,7 @@
  */
 
 import * as _ from "lodash";
+import { Symbol } from "core-js";
     
 const TRANSPORT_PREFIX = "EAMP_LOGGER";
 
