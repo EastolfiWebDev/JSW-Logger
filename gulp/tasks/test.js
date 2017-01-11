@@ -11,40 +11,32 @@ gulp.task("clean:coveralls", function () {
     return del([
         "test/coverage",
         "test/results",
-        "lib-cov"
+        "lib"
     ]);
 });
 
 gulp.task("coveralls:prepare", function () {
     fs.mkdirSync("lib");
+    fs.mkdirSync("test/coverage");
+    fs.mkdirSync("test/results");
     execSync("cp src/JSW-Logger.js lib/JSW-Logger.js");
     
     return;
 });
 
 gulp.task("jscoverage", function () {
-    execSync("./node_modules/jscoverage/bin/jscoverage --no-highlight lib lib-cov");
-    
-    return;
-});
-
-gulp.task("coveralls:dirs", function() {
-    fs.renameSync("lib", "lib-orig");
-    fs.renameSync("lib-cov", "lib");
-    fs.mkdirSync("test/coverage");
-    fs.mkdirSync("test/results");
+    execSync("./node_modules/jscoverage/bin/jscoverage --no-highlight lib test/coverage/lib");
     
     return;
 });
 
 gulp.task("coveralls:make", function() {
-    execSync("node test/coveralls.js");
+    process.env.test_coverage = true;
     
-    return;
-});
-
-gulp.task("coveralls:finalize", function() {
-    execSync("rm -rf lib lib-orig");
+    execSync("mocha test/specs/1_Base.js -R html-cov > test/results/coverage.html");
+    execSync("mocha test/specs/1_Base.js -R mocha-lcov-reporter > test/coverage/coverage-dist.lcov");
+    
+    delete process.env.test_coverage;
     
     return;
 });
@@ -55,9 +47,7 @@ gulp.task("coveralls", function (cb) {
         "clean:coveralls",
         "coveralls:prepare",
         "jscoverage",
-        "coveralls:dirs",
         "coveralls:make",
-        "coveralls:finalize",
     function(error) {
         if (error) {
             console.log(error);
