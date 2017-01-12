@@ -20,6 +20,7 @@ gulp.task("coveralls:prepare", function () {
     fs.mkdirSync("test/coverage");
     fs.mkdirSync("test/results");
     execSync("cp src/JSW-Logger.js lib/JSW-Logger.js");
+    execSync("cp src/Options.js lib/Options.js");
     
     return;
 });
