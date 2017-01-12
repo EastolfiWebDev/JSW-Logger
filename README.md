@@ -1,5 +1,5 @@
 # JSW-Logger
-Javascript logging module that inherits [Winston Logger][Repo-Winston] module.
+Javascript logging module
 
 [![Package Version][npm-image]][npm-url]
 [![NodeJS Version][node-image]][node-url]
@@ -10,7 +10,7 @@ Javascript logging module that inherits [Winston Logger][Repo-Winston] module.
 [![Downloads][downloads-image]][npm-url]
 [![Documentation Status][docs-image]][docs-url]
 
-Extends all the loggin functionality from Winston, and allows to handle custom exceptions to custom files.
+Logging module which writes in the console all warnings and erros
 
 # Installation
 ```shell
@@ -22,8 +22,6 @@ npm install --save jsw-logger
 # License
 
 MIT
-
-[Repo-Winston]: https://github.com/winstonjs/winston
 
 [mongo-db-command]: https://docs.mongodb.com/manual/reference/command/
 
