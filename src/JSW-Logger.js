@@ -1,38 +1,11 @@
 "use strict";
-/**
- * @file JSW-Logger.js - Logging class extending Winston (@link https://github.com/winstonjs/winston) module
- * @version 0.0.1
- *
- * @author Eduardo Astolfi <eastolfi91@gmail.com>
- * @copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
- * @license MIT Licensed
- */
 var _ = require("lodash");
 var core_js_1 = require("core-js");
+var Options_1 = require("./Options");
 var TRANSPORT_PREFIX = "EAMP_LOGGER";
 // Singleton instance
 var singleton = core_js_1.Symbol();
 var singletonEnforcer = core_js_1.Symbol();
-var Options = (function () {
-    function Options(options) {
-        this.__defaultOptions = {
-            level: 2,
-            hideAllLogs: false,
-            hideLevelLog: false,
-            throwError: true,
-            handledExceptionsLogPath: "/../logs/handledException.log"
-        };
-        if (_.isNil(options)) {
-            options = {};
-        }
-        this.level = (options.level ? options.level : this.__defaultOptions.level);
-        this.hideAllLogs = (_.isBoolean(options.hideAllLogs) ? options.hideAllLogs : this.__defaultOptions.hideAllLogs);
-        this.hideLevelLog = (_.isBoolean(options.hideLevelLog) ? options.hideLevelLog : this.__defaultOptions.hideLevelLog);
-        this.throwError = (_.isBoolean(options.throwError) ? options.throwError : this.__defaultOptions.throwError);
-        this.handledExceptionsLogPath = (options.handledExceptionsLogPath ? options.handledExceptionsLogPath : this.__defaultOptions.handledExceptionsLogPath);
-    }
-    return Options;
-}());
 var LEVELS = {
     "silly": 6,
     "debug": 5,
@@ -73,26 +46,17 @@ function interpolate(string, values) {
  * JSWLogger
  *
  * @module JSWLogger
- * @constructor
- * @since 1.0.0
+ * @since 0.0.1
+ * @author Eduardo Astolfi <eastolfi91@gmail.com>
+ * @copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
+ * @license MIT Licensed
  *
- * @classdesc Logging module singleton which inherits the Winston Logger module.
- *          By default:
- *              <ol>
- *                  <li>Writes all the HANDLED exceptions under a log file in "logs/handledException.log"</li>
- *                  <li>Writes in the console all warnings and erros</li>
- *              </ol>
- *
- * @param {Symbol} enforcer - Enforcer internal object to avoid instanciating as "new JSWLogger()"
- * @param {Object} [options] - Additional options
- *
- * @param {Boolean} [options.hideAllLogs=false] - When set to true hides all logs (usefull when running tests)
- * @param {Boolean} [options.throwError=true] - Whether if throw an exception when logged trought the Logger#throw method
+ * @classdesc Logging module singleton which writes in the console all warnings and erros
  */
 var JSWLogger = (function () {
     function JSWLogger(enforcer, options) {
         if (options === void 0) { options = {}; }
-        this.options = new Options();
+        this.options = new Options_1.Options();
         if (enforcer != singletonEnforcer)
             throw new Error("Cannot construct singleton");
         // super({
@@ -104,7 +68,7 @@ var JSWLogger = (function () {
         //     ]
         // });
         //this.options = _.assign({}, this.options, options);
-        this.options = new Options(options);
+        this.options = new Options_1.Options(options);
         // Ensuring that the log file exists
         // let handledExceptionsLogPath = path.resolve(__dirname + defaultOptions.handledExceptionsLogPath);
         // ensureFile(handledExceptionsLogPath, error => {
@@ -126,23 +90,10 @@ var JSWLogger = (function () {
         //     }
         // });
     }
-    JSWLogger.prototype.log = function (level, message) {
-        var options = [];
-        for (var _i = 2; _i < arguments.length; _i++) {
-            options[_i - 2] = arguments[_i];
-        }
-        if (_.isNil(level)) {
-            level = LEVELS.log;
-            message = "";
-            options = [];
-        }
-        if (_.isNil(message)) {
-            message = level;
-            level = LEVELS.log;
-            options = [];
-        }
-        if (_.isNil(options)) {
-            options = [];
+    JSWLogger.prototype.__log = function (level, message, options) {
+        if (options === void 0) { options = []; }
+        if (_.isNil(level) || _.isNil(message)) {
+            throw new Error("Call not allowed: Missing parameters");
         }
         if (_.isNaN(_.toNumber(level))) {
             level = _.isNil(LEVELS[level]) ? LEVELS.log : LEVELS[level];
@@ -190,78 +141,100 @@ var JSWLogger = (function () {
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.silly, message || "", options);
+        return this.__log(LEVELS.silly, message || "", options);
     };
     JSWLogger.prototype.debug = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.debug, message || "", options);
+        return this.__log(LEVELS.debug, message || "", options);
     };
     JSWLogger.prototype.verbose = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.verbose, message || "", options);
+        return this.__log(LEVELS.verbose, message || "", options);
+    };
+    JSWLogger.prototype.log = function (message) {
+        var options = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            options[_i - 1] = arguments[_i];
+        }
+        return this.__log(LEVELS.log, message || "", options);
     };
     JSWLogger.prototype.info = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.info, message || "", options);
+        return this.__log(LEVELS.info, message || "", options);
     };
     JSWLogger.prototype.inform = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.info, message || "", options);
+        return this.__log(LEVELS.info, message || "", options);
     };
     JSWLogger.prototype.information = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.info, message || "", options);
+        return this.__log(LEVELS.info, message || "", options);
     };
     JSWLogger.prototype.warn = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.warn, message || "", options);
+        return this.__log(LEVELS.warn, message || "", options);
     };
     JSWLogger.prototype.warning = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.warn, message || "", options);
+        return this.__log(LEVELS.warn, message || "", options);
     };
     JSWLogger.prototype.error = function (message) {
         var options = [];
         for (var _i = 1; _i < arguments.length; _i++) {
             options[_i - 1] = arguments[_i];
         }
-        return this.log(LEVELS.error, message || "", options);
+        return this.__log(LEVELS.error, message || "", options);
+    };
+    JSWLogger.prototype.print = function (level, message) {
+        var options = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            options[_i - 2] = arguments[_i];
+        }
+        if (_.isNil(message) || _.isArray(message)) {
+            options = (message || []);
+            message = level;
+            level = LEVELS.log;
+        }
+        return this.__log(level, message || "", options);
     };
     /**
      * Method to throw a controlled exception, logging it to a log file.
      *
      * @method JSWLogger#throw
      *
-     * @param {Error|String} error - The exception or message to be thrown.
+     * @param {Error|string} error - The exception or message to be thrown.
      * @param {Boolean} [throwError=true] - Same as JSWLogger->options->throwError
      */
     JSWLogger.prototype.throw = function (error) {
         if (_.isString(error))
             error = new Error(error);
-        this.error(error.message);
-        if (this.options.throwError)
+        if (this.options.throwError) {
             throw error;
+        }
+        else {
+            return this.error(error.message);
+        }
     };
     Object.defineProperty(JSWLogger, "instance", {
         /**

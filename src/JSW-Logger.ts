@@ -1,50 +1,14 @@
 "use strict";
 
-/**
- * @file JSW-Logger.js - Logging class extending Winston (@link https://github.com/winstonjs/winston) module
- * @version 0.0.1
- * 
- * @author Eduardo Astolfi <eastolfi91@gmail.com>
- * @copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
- * @license MIT Licensed
- */
-
 import * as _ from "lodash";
 import { Symbol } from "core-js";
+import { Options } from "./Options";
     
 const TRANSPORT_PREFIX = "EAMP_LOGGER";
 
 // Singleton instance
 const singleton = Symbol();
 const singletonEnforcer = Symbol();
-
-class Options {
-    public level: Number;                          // logging info, warn and error by default
-    public hideAllLogs: boolean;
-    public hideLevelLog: boolean;
-    public throwError: boolean;
-    public handledExceptionsLogPath: String;
-    
-    private __defaultOptions = {
-        level: 2,
-        hideAllLogs: false,
-        hideLevelLog: false,
-        throwError: true,
-        handledExceptionsLogPath: "/../logs/handledException.log"
-    };
-    
-    constructor(options?) {
-        if (_.isNil(options)) {
-            options = {}
-        }
-        
-        this.level = (options.level ? options.level : this.__defaultOptions.level);
-        this.hideAllLogs = (_.isBoolean(options.hideAllLogs) ? options.hideAllLogs : this.__defaultOptions.hideAllLogs);
-        this.hideLevelLog = (_.isBoolean(options.hideLevelLog) ? options.hideLevelLog : this.__defaultOptions.hideLevelLog);
-        this.throwError = (_.isBoolean(options.throwError) ? options.throwError : this.__defaultOptions.throwError);
-        this.handledExceptionsLogPath = (options.handledExceptionsLogPath ? options.handledExceptionsLogPath : this.__defaultOptions.handledExceptionsLogPath);
-    }
-}
 
 const LEVELS = {
     "silly":    6,
@@ -93,26 +57,17 @@ function interpolate(string, values) {
  * JSWLogger
  * 
  * @module JSWLogger
- * @constructor
- * @since 1.0.0
+ * @since 0.0.1
+ * @author Eduardo Astolfi <eastolfi91@gmail.com>
+ * @copyright 2016 Eduardo Astolfi <eastolfi91@gmail.com>
+ * @license MIT Licensed
  * 
- * @classdesc Logging module singleton which inherits the Winston Logger module.
- *          By default: 
- *              <ol>
- *                  <li>Writes all the HANDLED exceptions under a log file in "logs/handledException.log"</li>
- *                  <li>Writes in the console all warnings and erros</li>
- *              </ol>
- * 
- * @param {Symbol} enforcer - Enforcer internal object to avoid instanciating as "new JSWLogger()"
- * @param {Object} [options] - Additional options
- * 
- * @param {Boolean} [options.hideAllLogs=false] - When set to true hides all logs (usefull when running tests)
- * @param {Boolean} [options.throwError=true] - Whether if throw an exception when logged trought the Logger#throw method
+ * @classdesc Logging module singleton which writes in the console all warnings and erros
  */
 class JSWLogger {
     private options: Options = new Options();
     
-    constructor(enforcer, options = {}) {
+    constructor(enforcer:Symbol, options:Object = {}) {
         if(enforcer != singletonEnforcer) throw new Error("Cannot construct singleton");
         
         // super({
@@ -152,21 +107,9 @@ class JSWLogger {
         // });
     }
     
-    log(level, message, ...options) {
-        if (_.isNil(level)) {
-            level = LEVELS.log;
-            message = "";
-            options = [];
-        }
-        
-        if (_.isNil(message)) {
-            message = level;
-            level = LEVELS.log;
-            options = [];
-        }
-        
-        if (_.isNil(options)) {
-            options = [];
+    private __log(level, message:string, options:Array<string|number> = []) {
+        if (_.isNil(level) || _.isNil(message)) {
+            throw new Error("Call not allowed: Missing parameters");
         }
         
         if (_.isNaN(_.toNumber(level))) {
@@ -209,32 +152,44 @@ class JSWLogger {
         }
     }
     
-    silly(message, ...options) {
-        return this.log(LEVELS.silly, message || "", options);
+    silly(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.silly, message || "", options);
     }
-    debug(message, ...options) {
-        return this.log(LEVELS.debug, message || "", options);
+    debug(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.debug, message || "", options);
     }
-    verbose(message, ...options) {
-        return this.log(LEVELS.verbose, message || "", options);
+    verbose(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.verbose, message || "", options);
     }
-    info(message, ...options) {
-        return this.log(LEVELS.info, message || "", options);
+    log(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.log, message || "", options);
     }
-    inform(message, ...options) {
-        return this.log(LEVELS.info, message || "", options);
+    info(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.info, message || "", options);
     }
-    information(message, ...options) {
-        return this.log(LEVELS.info, message || "", options);
+    inform(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.info, message || "", options);
     }
-    warn(message, ...options) {
-        return this.log(LEVELS.warn, message || "", options);
+    information(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.info, message || "", options);
     }
-    warning(message, ...options) {
-        return this.log(LEVELS.warn, message || "", options);
+    warn(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.warn, message || "", options);
     }
-    error(message, ...options) {
-        return this.log(LEVELS.error, message || "", options);
+    warning(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.warn, message || "", options);
+    }
+    error(message:string, ...options:Array<string|number>) {
+        return this.__log(LEVELS.error, message || "", options);
+    }
+    print(level:string|number, message:string, ...options:Array<string|number>) {
+        if (_.isNil(message) || _.isArray(message)) {
+            options = <any[]>(message || []);
+            message = <string>level;
+            level = <number>LEVELS.log;
+        }
+        
+        return this.__log(level, message || "", options);
     }
     
     /**
@@ -242,15 +197,17 @@ class JSWLogger {
      * 
      * @method JSWLogger#throw
      * 
-     * @param {Error|String} error - The exception or message to be thrown.
+     * @param {Error|string} error - The exception or message to be thrown.
      * @param {Boolean} [throwError=true] - Same as JSWLogger->options->throwError
      */
-    throw(error) {
-        if (_.isString(error)) error = new Error(error);
+    throw(error:Error|string) {
+        if (_.isString(error)) error = new Error(<string>error);
         
-        this.error(error.message);
-        
-        if (this.options.throwError) throw error;
+        if (this.options.throwError) {
+            throw error;
+        } else {
+            return this.error((<Error>error).message);
+        }
     }
     
     /**
@@ -260,7 +217,7 @@ class JSWLogger {
      * 
      * @returns {JSWLogger} this - The singleton Instance
      */
-    static get instance() {
+    static get instance():JSWLogger {
         if (_.isNil(this[singleton])) {
             this[singleton] = new JSWLogger(singletonEnforcer);
         }
@@ -279,7 +236,7 @@ class JSWLogger {
      * 
      * @returns {JSWLogger} this - The singleton Instance
      */
-    static getInstance(options) {
+    static getInstance(options:Object):JSWLogger {
         if (_.isNil(this[singleton])) {
             this[singleton] = new JSWLogger(singletonEnforcer, options);
         } else {
@@ -294,7 +251,7 @@ class JSWLogger {
      * 
      * @static
      */
-    static __dropInstance() {
+    static __dropInstance():void {
         delete this[singleton];
     }
 }
