@@ -1,5 +1,20 @@
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.2...v1.2.3) (2017-01-13)
+
+
+### Bug Fixes
+
+* Solve the module import from NodeJS ([0f213a5](https://github.com/EastolfiWebDev/JSW-Logger/commit/0f213a5))
+
+
+### Features
+
+* Allow to interpolate en error thrown ([0d3ac4b](https://github.com/EastolfiWebDev/JSW-Logger/commit/0d3ac4b))
+
+
+
 <a name="1.2.2"></a>
-## [1.2.2](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.1...v1.2.2) (2017-01-12)
+## [1.2.2](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.1...1.2.2) (2017-01-12)
 
 
 
