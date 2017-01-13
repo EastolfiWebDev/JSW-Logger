@@ -16,7 +16,7 @@ if (browser) {
     if (!!process.env.test_coverage) {
         _JSWLogger = require("../../test/coverage/lib/JSW-Logger.js").JSWLogger;
     } else {
-        _JSWLogger = require("../../index.js");
+        _JSWLogger = require("../../index.js").JSWLogger;
     }
 }
 

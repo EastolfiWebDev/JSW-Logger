@@ -28,7 +28,7 @@ import { JSWLogger } from "jsw-logger";
 
 ### Node JS
 ```js
-var JSWLogger = require("jsw-logger");
+var JSWLogger = require("jsw-logger").JSWLogger;
 ```
 
 ### Browser

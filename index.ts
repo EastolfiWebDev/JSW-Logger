@@ -6,4 +6,4 @@ try {
     }
 } catch(e) { /* window not found -> not a browser environment */ }
 
-export = JSWLogger;
+export { JSWLogger };
