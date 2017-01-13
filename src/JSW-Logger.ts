@@ -200,8 +200,13 @@ class JSWLogger {
      * @param {Error|string} error - The exception or message to be thrown.
      * @param {Boolean} [throwError=true] - Same as JSWLogger->options->throwError
      */
-    throw(error:Error|string) {
-        if (_.isString(error)) error = new Error(<string>error);
+    throw(error:Error|string, ...options:Array<string|number>) {
+        
+        if (_.isString(error)) {
+            let message = interpolate(<string>error, options);
+            
+            error = new Error(message);
+        }
         
         if (this.options.throwError) {
             throw error;

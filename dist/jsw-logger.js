@@ -22727,8 +22727,14 @@ var JSWLogger = (function () {
      * @param {Boolean} [throwError=true] - Same as JSWLogger->options->throwError
      */
     JSWLogger.prototype.throw = function (error) {
-        if (_.isString(error))
-            error = new Error(error);
+        var options = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            options[_i - 1] = arguments[_i];
+        }
+        if (_.isString(error)) {
+            var message = interpolate(error, options);
+            error = new Error(message);
+        }
         if (this.options.throwError) {
             throw error;
         }

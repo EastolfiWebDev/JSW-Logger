@@ -415,6 +415,41 @@ describe("Logger" + (browser ? "- Web" : ""), function() {
             
             expect(result).to.be.equal("ERROR: Hello World Nº 2!");
         });
+        
+        it("should interpolate and throw an error", function() {
+            var logger = _JSWLogger.instance;
+            logger.options.throwError = true;
+            
+            var thrown = false;
+            var result = "";
+            
+            try {
+                result = logger.throw("Error Nº %d", 1);
+            } catch (error) {
+                thrown = true;
+                
+                expect(error).to.exist;
+                expect(error).to.be.instanceof(Error);
+                expect(error.message).to.be.equal("Error Nº 1");
+            } finally {
+                expect(thrown).to.be.true;
+                expect(result).to.be.equal("");
+            }
+            
+            logger.options.throwError = false;
+            
+            thrown = false;
+            result = "";
+            
+            try {
+                result = logger.throw("Error Nº %s", "unknown");
+            } catch (error) {
+                thrown = true;
+            } finally {
+                expect(thrown).to.be.false;
+                expect(result).to.be.equal("ERROR: Error Nº unknown");
+            }
+        });
     });
     
     describe("# Not Allowed", function() {
