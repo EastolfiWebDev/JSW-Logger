@@ -7,7 +7,9 @@ try {
         window["JSWLogger"] = JSW_Logger_1.JSWLogger; // Logger.default;
     }
 }
-catch (e) { }
+catch (e) {
+    (console.debug || console.log)("window not found -> not a browser environment");
+}
 
 
 
@@ -22557,7 +22559,7 @@ var JSWLogger = (function () {
     function JSWLogger(enforcer, options) {
         if (options === void 0) { options = {}; }
         this.options = new Options_1.Options();
-        if (enforcer != singletonEnforcer)
+        if (enforcer !== singletonEnforcer)
             throw new Error("Cannot construct singleton");
         // super({
         //     transports: [
