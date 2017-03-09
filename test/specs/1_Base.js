@@ -5,7 +5,7 @@ var browser = false;
 
 try {
     if (window) browser = true;
-} catch (e) {}
+} catch (e) { /* window not found -> not a browser environment */ }
 
 if (browser) {
     expect = window.chai.expect;
@@ -13,7 +13,7 @@ if (browser) {
 } else {
     expect = require("chai").expect;
 
-    if (!!process.env.test_coverage) {
+    if (process.env.test_coverage) {
         _JSWLogger = require("../../test/coverage/lib/JSW-Logger.js").JSWLogger;
     } else {
         _JSWLogger = require("../../index.js").JSWLogger;

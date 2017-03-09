@@ -14,18 +14,25 @@ var knownOptions = {
 
 var options = minimist(process.argv.slice(2), knownOptions);
 
+function getPackageJsonVersion () {
+    // We parse the json file instead of using require because require caches
+    // multiple calls so the version number won"t be updated
+    return JSON.parse(fs.readFileSync("./package.json", "utf8")).version;
+}
+
 gulp.task("version", function () {
     var src = gulp.src(["./bower.json", "./package.json"]);
     // Do patch by default
     var stage = null;
+    var type = "patch";
     
     if (options.major) {
-        stage = src.pipe(bump({type: "major"}).on("error", gutil.log));
+        type = "major";
     } else if (options.minor) {
-        stage = src.pipe(bump({type: "minor"}).on("error", gutil.log));
-    } else {
-        stage = src.pipe(bump({type: "patch"}).on("error", gutil.log));
+        type = "minor";
     }
+    
+    stage = src.pipe(bump({type: type}).on("error", gutil.log));
         
     return stage.pipe(gulp.dest("./"));
 });
@@ -66,12 +73,6 @@ gulp.task("create-new-tag", function (cb) {
         
         git.push("origin", "master", {args: "--tags"}, cb);
     });
-    
-    function getPackageJsonVersion () {
-        // We parse the json file instead of using require because require caches
-        // multiple calls so the version number won"t be updated
-        return JSON.parse(fs.readFileSync("./package.json", "utf8")).version;
-    }
 });
 
 gulp.task("release:github", function (done) {

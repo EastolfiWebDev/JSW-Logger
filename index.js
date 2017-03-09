@@ -6,6 +6,8 @@ try {
         window["JSWLogger"] = JSW_Logger_1.JSWLogger; // Logger.default;
     }
 }
-catch (e) { }
+catch (e) {
+    (console.debug || console.log)("window not found -> not a browser environment");
+}
 
 //# sourceMappingURL=index.js.map

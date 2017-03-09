@@ -57,7 +57,7 @@ var JSWLogger = (function () {
     function JSWLogger(enforcer, options) {
         if (options === void 0) { options = {}; }
         this.options = new Options_1.Options();
-        if (enforcer != singletonEnforcer)
+        if (enforcer !== singletonEnforcer)
             throw new Error("Cannot construct singleton");
         // super({
         //     transports: [

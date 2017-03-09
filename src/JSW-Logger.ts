@@ -68,7 +68,7 @@ class JSWLogger {
     private options: Options = new Options();
     
     constructor(enforcer:Symbol, options:Object = {}) {
-        if(enforcer != singletonEnforcer) throw new Error("Cannot construct singleton");
+        if(enforcer !== singletonEnforcer) throw new Error("Cannot construct singleton");
         
         // super({
         //     transports: [

@@ -4,6 +4,8 @@ try {
     if (window) {
         window["JSWLogger"] = JSWLogger;// Logger.default;
     }
-} catch(e) { /* window not found -> not a browser environment */ }
+} catch(e) {
+    (console.debug || console.log)("window not found -> not a browser environment");
+}
 
 export { JSWLogger };
