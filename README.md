@@ -1,4 +1,7 @@
 # JSW-Logger
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf9e52282bc34265bf583d9c458d97f9)](https://www.codacy.com/app/eastolfi/JSW-Logger?utm_source=github.com&utm_medium=referral&utm_content=EastolfiWebDev/JSW-Logger&utm_campaign=badger)
+
 Javascript logging module which writes in the console all warnings and erros
 
 [![Package Version][npm-image]][npm-url]
