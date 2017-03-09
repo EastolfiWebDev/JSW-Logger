@@ -10,6 +10,12 @@ Javascript logging module which writes in the console all warnings and erros
 [![Downloads][downloads-image]][npm-url]
 [![Documentation Status][docs-image]][docs-url]
 
+[![CodeClimate GPA][codeclimate-image-gpa]][codeclimate-url-gpa]
+[![CodeClimate Issues][codeclimate-image-issues]][codeclimate-url-issues]
+[![CodeClimate Coverage][codeclimate-image-coverage]][codeclimate-url-coverage]
+
+[![Codacy][codacy-image]][codacy-url]
+
 # Installation
 ```shell
 npm install --save jsw-logger
@@ -108,3 +114,11 @@ MIT
 [downloads-image]: https://img.shields.io/npm/dt/jsw-logger.svg
 [docs-image]: https://readthedocs.org/projects/jsw-logger/badge/?version=latest
 [docs-url]: http://jsw-logger.readthedocs.io/en/latest/?badge=latest
+[codeclimate-image-gpa]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger/badges/gpa.svg
+[codeclimate-url-gpa]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger/code
+[codeclimate-image-issues]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger/badges/coverage.svg
+[codeclimate-url-issues]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger/coverage/issues
+[codeclimate-image-coverage]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger/badges/issue_count.svg
+[codeclimate-url-coverage]: https://lima.codeclimate.com/github/EastolfiWebDev/JSW-Logger
+[codacy-image]: https://api.codacy.com/project/badge/Grade/bf9e52282bc34265bf583d9c458d97f9
+[codacy-url]: https://www.codacy.com/app/eastolfi/JSW-Logger/dashboard
