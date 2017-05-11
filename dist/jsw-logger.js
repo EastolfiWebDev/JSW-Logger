@@ -2,6 +2,8 @@
 "use strict";
 var JSW_Logger_1 = require("./src/JSW-Logger");
 exports.JSWLogger = JSW_Logger_1.JSWLogger;
+var decorators_1 = require("./src/decorators");
+exports.LogMethod = decorators_1.LogMethod;
 try {
     if (window) {
         window["JSWLogger"] = JSW_Logger_1.JSWLogger; // Logger.default;
@@ -13,7 +15,7 @@ catch (e) {
 
 
 
-},{"./src/JSW-Logger":310}],2:[function(require,module,exports){
+},{"./src/JSW-Logger":310,"./src/decorators":312}],2:[function(require,module,exports){
 require('./shim');
 require('./modules/core.dict');
 require('./modules/core.get-iterator-method');
@@ -22833,6 +22835,25 @@ exports.Options = Options;
 
 
 
-},{"lodash":309}]},{},[1]);
+},{"lodash":309}],312:[function(require,module,exports){
+"use strict";
+var JSW_Logger_1 = require("./JSW-Logger");
+function LogMethod(target, propertyKey, descriptor) {
+    var logger = JSW_Logger_1.JSWLogger.instance;
+    var originalMethod = descriptor.value;
+    descriptor.value = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        logger.debug("Within " + this.constructor.name + "#" + propertyKey);
+        return originalMethod.apply(this, args);
+    };
+}
+exports.LogMethod = LogMethod;
+
+
+
+},{"./JSW-Logger":310}]},{},[1]);
 
 //# sourceMappingURL=jsw-logger.js.map
