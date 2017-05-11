@@ -1,4 +1,5 @@
 import { JSWLogger } from "./src/JSW-Logger";
+import { LogMethod } from "./src/decorators";
 
 try {
     if (window) {
@@ -8,4 +9,4 @@ try {
     (console.debug || console.log)("window not found -> not a browser environment");
 }
 
-export { JSWLogger };
+export { JSWLogger, LogMethod };
