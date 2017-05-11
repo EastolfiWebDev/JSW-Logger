@@ -1,5 +1,15 @@
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.3...v1.2.4) (2017-05-11)
+
+
+### Features
+
+* **decorator:** Add method logger decorator (TypeScript) ([87646ff](https://github.com/EastolfiWebDev/JSW-Logger/commit/87646ff))
+
+
+
 <a name="1.2.3"></a>
-## [1.2.3](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.2...v1.2.3) (2017-01-13)
+## [1.2.3](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.2...1.2.3) (2017-01-13)
 
 
 ### Bug Fixes
