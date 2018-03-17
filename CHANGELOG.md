@@ -1,5 +1,10 @@
-<a name="1.2.4"></a>
-## [1.2.4](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.3...v1.2.4) (2017-05-11)
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.4...v1.2.5) (2018-03-17)
+
+
+### Bug Fixes
+
+* Correct a problem with the 0-level log ([91c40d9](https://github.com/EastolfiWebDev/JSW-Logger/commit/91c40d9))
 
 
 ### Features
