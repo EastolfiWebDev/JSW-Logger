@@ -23,7 +23,7 @@ var Options = (function () {
         if (_.isNil(options)) {
             options = {};
         }
-        this.level = (options.level ? options.level : this.__defaultOptions.level);
+        this.level = ((options.level != null) ? options.level : this.__defaultOptions.level);
         this.hideAllLogs = (_.isBoolean(options.hideAllLogs) ? options.hideAllLogs : this.__defaultOptions.hideAllLogs);
         this.hideLevelLog = (_.isBoolean(options.hideLevelLog) ? options.hideLevelLog : this.__defaultOptions.hideLevelLog);
         this.throwError = (_.isBoolean(options.throwError) ? options.throwError : this.__defaultOptions.throwError);

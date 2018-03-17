@@ -107,7 +107,7 @@ var JSWLogger = (function () {
         }
         var logMethod = console.log;
         // If level is lower than 0, that means we dont log anything
-        if (level > 0) {
+        if (level >= 0) {
             if (level === 0) {
                 if (console.error)
                     logMethod = console.error;
