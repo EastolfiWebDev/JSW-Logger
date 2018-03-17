@@ -1,7 +1,7 @@
 "use strict";
 
 import * as _ from "lodash";
-import { Symbol } from "core-js";
+import * as Symbol from "es6-symbol";
 import { Options } from "./Options";
     
 const TRANSPORT_PREFIX = "EAMP_LOGGER";

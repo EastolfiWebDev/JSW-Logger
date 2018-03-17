@@ -1,11 +1,12 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
-var core_js_1 = require("core-js");
+var Symbol = require("es6-symbol");
 var Options_1 = require("./Options");
 var TRANSPORT_PREFIX = "EAMP_LOGGER";
 // Singleton instance
-var singleton = core_js_1.Symbol();
-var singletonEnforcer = core_js_1.Symbol();
+var singleton = Symbol();
+var singletonEnforcer = Symbol();
 var LEVELS = {
     "silly": 6,
     "debug": 5,
@@ -289,7 +290,5 @@ var JSWLogger = (function () {
     return JSWLogger;
 }());
 exports.JSWLogger = JSWLogger;
-// module.exports = Logger;
-// export = Logger; 
 
 //# sourceMappingURL=JSW-Logger.js.map

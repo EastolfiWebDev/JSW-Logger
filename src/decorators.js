@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var JSW_Logger_1 = require("./JSW-Logger");
 function LogMethod(target, propertyKey, descriptor) {
     var logger = JSW_Logger_1.JSWLogger.instance;
