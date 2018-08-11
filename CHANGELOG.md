@@ -1,5 +1,15 @@
+<a name="1.2.6"></a>
+## [1.2.6](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.5...v1.2.6) (2018-08-11)
+
+
+### Bug Fixes
+
+* Remove the log when not in a browser [#7](https://github.com/EastolfiWebDev/JSW-Logger/issues/7) ([950893e](https://github.com/EastolfiWebDev/JSW-Logger/commit/950893e))
+
+
+
 <a name="1.2.5"></a>
-## [1.2.5](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.4...v1.2.5) (2018-03-17)
+## [1.2.5](https://github.com/EastolfiWebDev/JSW-Logger/compare/1.2.4...1.2.5) (2018-03-17)
 
 
 ### Bug Fixes
