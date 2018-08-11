@@ -6,11 +6,9 @@ var decorators_1 = require("./src/decorators");
 exports.LogMethod = decorators_1.LogMethod;
 try {
     if (window) {
-        window["JSWLogger"] = JSW_Logger_1.JSWLogger; // Logger.default;
+        window["JSWLogger"] = JSW_Logger_1.JSWLogger;
     }
 }
-catch (e) {
-    (console.debug || console.log)("window not found -> not a browser environment");
-}
+catch (e) { }
 
 //# sourceMappingURL=index.js.map

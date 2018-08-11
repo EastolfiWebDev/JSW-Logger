@@ -3,10 +3,8 @@ import { LogMethod } from "./src/decorators";
 
 try {
     if (window) {
-        window["JSWLogger"] = JSWLogger;// Logger.default;
+        window["JSWLogger"] = JSWLogger;
     }
-} catch(e) {
-    (console.debug || console.log)("window not found -> not a browser environment");
-}
+} catch(e) { /* window not found -> not a browser environment */ }
 
 export { JSWLogger, LogMethod };
